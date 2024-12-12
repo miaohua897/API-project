@@ -45,7 +45,7 @@ router.post(
       const user = await User.unscoped().findOne({
         where: {
           [Op.or]: {
-            username: credential,
+            userName: credential,
             email: credential
           }
         }
@@ -62,7 +62,9 @@ router.post(
       const safeUser = {
         id: user.id,
         email: user.email,
-        username: user.username,
+        userName: user.userName,
+        firstName: user.firstName,
+        lastName: user.lastName
       };
   
       await setTokenCookie(res, safeUser);
@@ -93,11 +95,14 @@ router.get(
     '/',
     (req, res) => {
       const { user } = req;
+      console.log(user);
       if (user) {
         const safeUser = {
           id: user.id,
           email: user.email,
-          username: user.username,
+          userName: user.userName,
+          firstName: user.firstName,
+          lastName: user.lastName
         };
         return res.json({
           user: safeUser
