@@ -69,77 +69,49 @@ router.get('/:spotId/reviews', async (req, res)=>{
 })
 
 
+
 router.get('/current', async (req, res)=>{
     
     // console.log(secretKey);
     const { user } = req;
-    // console.log(user);
+    console.log(user);
   
   
     if(user){
-
-      
-        const foundSpot = await Spot.findAll({
-           where:{
-            ownerId: user.id
-           }
-        });
-    //    const foundReviewsCount = await Review.count({
-    //     where: {spotId:foundSpot.id}
-    //    });
-
-    if(!foundSpot[0]) {
-        res.setHeader('Content-Type','application/json');
-        res.status(401);
-        return res.json(user)
-    }
-
-    let results = [];
-
-    for (let foundSpotEl of foundSpot){
-
-        const foundAverageStars = await Review.findOne({
-            attributes: [
-               [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
-            ],
-            where: {
-               spotId: foundSpotEl.id
-            }
-         });
-         
-             let newfoundspot = foundSpotEl.toJSON();
-             newfoundspot['avgRating'] = foundAverageStars? foundAverageStars.toJSON().avgStarRating :null;
-         
-         // console.log(foundAverageStars);
-         
-            const foundSpotImg = await SpotImage.findOne({
-             where:{
-                 spotId: foundSpotEl.id
-             }
-            });
-             
-            console.log(foundSpotImg);
-         //    newfoundspot['previewImage'] = foundSpotImg?foundSpotImg.toJSON().previewImage:null;
-         // console.log(foundSpotImg)
-             // newfoundspot['previewImage'] = null;
-             if(foundSpotImg){
-                 newfoundspot['previewImage'] =foundSpotImg.toJSON().url;
-             }else{
-                 newfoundspot['previewImage'] = null;
-             }
-
-             results.push( newfoundspot);
-    }
-  
-
+      try{
+     
+      const foundSpot = await Spot.findAll({
+        attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt',[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
+    
+        where:{
+          ownerId:user.id
+        },
+        include:[{
+                  model:Review,
+              },
+              {
+                 model: SpotImage,
+                 as:'previewImage',
+               
+               
+              }],
+   
+      })
       res.setHeader('Content-Type','application/json');
       res.json({
      
-         "Spots":  results
-
+         "Spots": foundSpot
         
       });
   
+      }catch(error){
+         
+        return res.json(error);
+      
+        // res.json({
+        //   "message": "Spot couldn't be found"
+        // });
+      }
       }
       else{
         res.setHeader('Content-Type','application/json');
@@ -149,6 +121,8 @@ router.get('/current', async (req, res)=>{
     
     return res.json(user)
   })
+
+
 
 
 router.get('/:spotId', async (req,res)=>{

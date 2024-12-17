@@ -77,57 +77,7 @@ const { Op } = require("sequelize");
 // ...
 router.use(restoreUser);
 
-router.get('/spots/current', async (req, res)=>{
-    
-  // console.log(secretKey);
-  const { user } = req;
-  console.log(user);
 
-
-  if(user){
-    try{
-   
-    const foundSpot = await Spot.findAll({
-      attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt',[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
-  
-      where:{
-        ownerId:user.id
-      },
-      include:[{
-                model:Review,
-            },
-            {
-               model: SpotImage,
-               as:'previewImage',
-             
-             
-            }],
- 
-    })
-    res.setHeader('Content-Type','application/json');
-    res.json({
-   
-       "Spots": foundSpot
-      
-    });
-
-    }catch(error){
-       
-      return res.json(error);
-    
-      // res.json({
-      //   "message": "Spot couldn't be found"
-      // });
-    }
-    }
-    else{
-      res.setHeader('Content-Type','application/json');
-      res.status(401);
-      return res.json(user)
-  }
-  
-  return res.json(user)
-})
 
 
 

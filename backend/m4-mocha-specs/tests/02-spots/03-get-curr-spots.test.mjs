@@ -14,6 +14,7 @@ describe("\nGet all Spots owned by the Current User", function () {
 
   before(async function () {
     this.timeout(15000);
+    // this.timeout(25000);
     [agent, unAuthAgent] = createManyAgents(apiBaseUrl, 2);
     [xsrfToken, xsrfToken2] = await fetchManyCsrfTokens([agent, unAuthAgent]);
     await agentSignUp(agent, xsrfToken);
@@ -59,6 +60,7 @@ describe("\nGet all Spots owned by the Current User", function () {
         .expect(200)
         .end(function (err, res) {
           expect(err).to.not.exist;
+          console.log(res.body)
           expect(res.body).to.be.an("object");
           expect(res.body).to.have.property("Spots").that.is.an("array");
 
