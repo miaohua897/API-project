@@ -49,10 +49,10 @@ module.exports = {
       }
     },options);
 
-   await queryInterface.addConstraint('Bookings',{
-    fields:['spotId','userId','startDate','endDate'],
-    type:'unique'
-   },options)
+  //  await queryInterface.addConstraint('Bookings',{
+  //   fields:['spotId','userId','startDate','endDate'],
+  //   type:'unique'
+  //  },options);
 
   },
   async down(queryInterface, Sequelize) {
@@ -60,7 +60,7 @@ module.exports = {
     //   fields:['spotId','userId','startDate','endDate'],
     //   type:'unique'
     //  });
-    await queryInterface.removeConstraint('Bookings', 'Bookings_spotId_userId_startDate_endDate_uk',options);
+    // await queryInterface.removeConstraint('Bookings', 'Bookings_spotId_userId_startDate_endDate_uk',options);
     await queryInterface.dropTable('Bookings',options);
    
  
