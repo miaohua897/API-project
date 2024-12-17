@@ -4,7 +4,7 @@ const express = require('express');
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser,requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 const router = express.Router();
@@ -38,40 +38,54 @@ const validateLogin = [
 // Log in
 router.post(
     '/',
-    validateLogin,
-    async (req, res, next) => {
+    validateLogin,requireAuth,
+    async (req, res,next) => {
+      // const { user } = req;
       const { credential, password } = req.body;
-  
-      const user = await User.unscoped().findOne({
-        where: {
-          [Op.or]: {
-            userName: credential,
-            email: credential
+
+     
+        const user = await User.unscoped().findOne({
+          where: {
+            [Op.or]: {
+              username: credential,
+              email: credential
+            }
           }
+        });
+    
+        if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
+          const err = new Error('Login failed');
+          // err.status = 401;
+          err.title = 'Login failed';
+          // err.errors = { credential: 'The provided credentials were invalid.' };
+          // err.errors={
+          //   "message": "Invalid credentials"
+          // };
+          // return next(err);
+          res.status(401);
+          return res.json(
+            {
+              "message": "Invalid credentials"
+            }
+          )
         }
-      });
-  
-      if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = { credential: 'The provided credentials were invalid.' };
-        return next(err);
-      }
-  
-      const safeUser = {
-        id: user.id,
-        email: user.email,
-        userName: user.userName,
-        firstName: user.firstName,
-        lastName: user.lastName
-      };
-  
-      await setTokenCookie(res, safeUser);
-  
-      return res.json({
-        user: safeUser
-      });
+    
+        const safeUser = {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName
+        };
+    
+        await setTokenCookie(res, safeUser);
+     
+        res.status(200);
+        return res.json({
+          user: safeUser
+        });
+ 
+     
     }
   );
 // backend/routes/api/session.js
@@ -100,7 +114,7 @@ router.get(
         const safeUser = {
           id: user.id,
           email: user.email,
-          userName: user.userName,
+          username: user.username,
           firstName: user.firstName,
           lastName: user.lastName
         };

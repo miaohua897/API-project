@@ -4,7 +4,16 @@ const router = require('express').Router();
 // const { User } = require('../../db/models');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const spotRouter = require('./spots.js');
+const reviewRouter = require('./reviews.js');
+const bookingRouter = require('./bookings.js');
+const spotimageRouter = require('./spot-images.js');
+const reviewImageRouter = require('./review-images.js');
 const { restoreUser } = require('../../utils/auth.js');
+const {Spot,Review,SpotImage,sequelize} = require('../../db/models');
+const { Op } = require("sequelize");
+// const { requireAuth,restoreUser, setTokenCookie } = require('../../utils/auth.js');
+
 // backend/routes/api/index.js
 // ...
 
@@ -66,13 +75,70 @@ const { restoreUser } = require('../../utils/auth.js');
 // );
 
 // ...
-
 router.use(restoreUser);
 
+router.get('/spots/current', async (req, res)=>{
+    
+  // console.log(secretKey);
+  const { user } = req;
+  console.log(user);
+
+
+  if(user){
+    try{
+   
+    const foundSpot = await Spot.findAll({
+      attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt',[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
+  
+      where:{
+        ownerId:user.id
+      },
+      include:[{
+                model:Review,
+            },
+            {
+               model: SpotImage,
+               as:'previewImage',
+             
+             
+            }],
+ 
+    })
+    res.setHeader('Content-Type','application/json');
+    res.json({
+   
+       "Spots": foundSpot
+      
+    });
+
+    }catch(error){
+       
+      return res.json(error);
+    
+      // res.json({
+      //   "message": "Spot couldn't be found"
+      // });
+    }
+    }
+    else{
+      res.setHeader('Content-Type','application/json');
+      res.status(401);
+      return res.json(user)
+  }
+  
+  return res.json(user)
+})
+
+
+
+
 router.use('/session', sessionRouter);
-
+router.use('/spot-images',spotimageRouter);
+router.use('/review-images',reviewImageRouter);
 router.use('/users', usersRouter);
-
+router.use('/reviews',reviewRouter);
+router.use('/bookings',bookingRouter);
+router.use('/spots',spotRouter);
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
 });

@@ -20,11 +20,11 @@ const validateSignup = [
       .exists({ checkFalsy: true })
       .isEmail()
       .withMessage('Please provide a valid email.'),
-    check('userName')
+    check('username')
       .exists({ checkFalsy: true })
       .isLength({ min: 4 })
       .withMessage('Please provide a username with at least 4 characters.'),
-    check('userName')
+    check('username')
       .not()
       .isEmail()
       .withMessage('Username cannot be an email.'),
@@ -46,23 +46,50 @@ router.post(
     '/',
     validateSignup,
     async (req, res) => {
-      const { email, password, userName,firstName,lastName } = req.body;
+      const { email, password, username,firstName,lastName } = req.body;
       const hashedPassword = bcrypt.hashSync(password);
-      const user = await User.create({ email,userName,firstName, lastName, hashedPassword });
+      try{
+        const user = await User.create({ email,username,firstName, lastName, hashedPassword });
   
-      const safeUser = {
-        id: user.id,
-        email: user.email,
-        userName: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName
-      };
-  
-      await setTokenCookie(res, safeUser);
-  
-      return res.json({
-        user: safeUser
-      });
+        const safeUser = {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName
+        };
+    
+        await setTokenCookie(res, safeUser);
+        res.status(201);
+        return res.json({
+          user: safeUser
+        });
+      }catch(error){
+
+          if(error.errors[0].message==="email must be unique"||error.errors[0].message==="username must be unique"){
+            res.status(500);
+            return res.json(
+              {
+                "message": "User already exists",
+                "errors": {
+                  "email": "User with that email already exists",
+                  "username": "User with that username already exists"
+                }
+              }
+            )
+          }
+          res.status(400);
+          return res.json({
+            "message": "Bad Request", 
+            "errors": {
+              "email": "Invalid email",
+              "username": "Username is required",
+              "firstName": "First Name is required",
+              "lastName": "Last Name is required"
+            }
+          })
+      }
+    
     }
   );
 
