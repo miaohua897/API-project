@@ -22,29 +22,28 @@ const spotData = [
   // },
   {
     // ownerId:1,
-    username: 'Demo-lition',
+    userName: 'Demo-lition',
     address:'mars',
     city:'mars_x',
     state:'CA',
     country:'Mars',
-    lat:0.4,
-    lng:2.3,
+    lat:36,
+    lng:-121,
     name:'mars hotel',
     description:'transportion is excluded',
-    price:200
+    price:150
   },
   {
-    ownerId:2,
-    username: 'FakeUser1',
+    userName: 'FakeUser1',
     address:'moon',
     city:'moon_x',
     state:'CA',
     country:'Moon',
-    lat:0.4,
-    lng:2.3,
+    lat:37,
+    lng:-122,
     name:'moon hotel',
     description:'transportion is excluded',
-    price:100
+    price:150
   }
 ]
 
