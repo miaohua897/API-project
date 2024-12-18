@@ -19,6 +19,7 @@ router.get('/:spotId/bookings', requireAuth,async (req, res)=>{
   
     if(user.id !== foundBooking.userId){
         res.status(200);
+        res.setHeader('Content-Type','application/json');
         return res.json({
             foundBooking 
         })
@@ -26,6 +27,7 @@ router.get('/:spotId/bookings', requireAuth,async (req, res)=>{
     if(user.id === foundBooking.userId) {
         const theuser = await User.findByPk(user.id);
         res.status(200);
+        res.setHeader('Content-Type','application/json');
         return res.json({
             "Bookings":[
                 {
@@ -55,13 +57,15 @@ router.get('/:spotId/reviews', async (req, res)=>{
         ]
     });
     if(foundReviews.length>0){
-        res.status(200)
+        res.status(200);
+        res.setHeader('Content-Type','application/json');
         return res.json({
            "Reviews":foundReviews
         })
     }
 
     res.status(404);
+    res.setHeader('Content-Type','application/json');
     res.json({
         "message": "Spot couldn't be found"
       });
@@ -237,7 +241,7 @@ router.get('/', async (req, res)=>{
         })
     }
 
-    if(minLat){
+    if(typeof minLat === 'string'){
         const minlatSplit = minLat.split('');
         minlatSplit.forEach(el=>{
             if(!'0123456789'.includes(el)){
@@ -245,10 +249,13 @@ router.get('/', async (req, res)=>{
                 res.status(400);
         return res.json({
             "message":"wrong query",
-            "errors":{minLat,
+            "errors":{
+            minLat,
             maxLat,
             minLng,
-            maxLng}
+            maxLng
+        },
+            
         })
                 
             }
@@ -269,31 +276,6 @@ router.get('/', async (req, res)=>{
 
     console.log(minLat, maxLat,typeof minLat );
 
-    // if(minLat) {
-    //      where.lat ={
-    //         [Op.gte] : Number(minLat)
-    //      }
-        
-    // }
-   
-    // if(maxLat) where.lat={
-    //     [Op.lte] : Number(minLng)
-    // }
-    // if(minLng) where.Lng ={
-    //     [Op.gte]: Number(minLng)
-    // }
-    // if(maxLng) where.Lng ={
-    //      [Op.lte] : Number(maxLng)
-    // }
-    // if(minPrice) where.price = {
-    //     [Op.gte] :Number(minPrice)
-    // }
-    // if(maxPrice) where.price ={
-    //     [Op.lte]: Number(maxPrice)
-    // }
-  
-
-    // console.log(where);
 
     const findSpot = await Spot.findAll({
         attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt'],
@@ -319,8 +301,8 @@ router.get('/', async (req, res)=>{
         res.status(404);
         res.setHeader('Content-Type','application/json');
         return res.json({
-            "message": "Spot couldn't be found"
-          })
+             "message": "Spot couldn't be found"
+        })
     }
 
     let results = [];
@@ -328,6 +310,9 @@ router.get('/', async (req, res)=>{
 
     for (let findSpotel of findSpot){
         let findSpotelObj =findSpotel.toJSON();
+        findSpotelObj["lat"] = Number(findSpotelObj["lat"]);
+        findSpotelObj["lng"] = Number(findSpotelObj["lng"]);
+        findSpotelObj["price"] = Number(findSpotelObj["price"]);
         const foundReviews = await Review.findAll({
             attributes:[[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
             where:{
@@ -348,52 +333,20 @@ router.get('/', async (req, res)=>{
         });
 
         findSpotelObj['previewImage'] =foundSpotImage? foundSpotImage.toJSON():null;
-        findSpotelObj['page'] =page;
-        findSpotelObj['size'] =size;
+        // findSpotelObj['page'] =page;
+        // findSpotelObj['size'] =size;
         results.push(findSpotelObj);
         
     }
 
-    // const findSpot = await Spot.findAll({
-    //     attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt'],
-    //     where,
-       
-    //     include:[{
-    //         model:Review,
-    //         attributes:[[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
-    //     },
-    //     {
-    //        model: SpotImage ,
-    //        as:'previewImage',
-    //        attributes:['url'],
-         
-    //     }],
-
-    //     group: ['Spot.id'],
-    //     limit:Number(size),
-    //     offset,
-    //     raw: true, 
-    //     nest: true  
-    // });
-
-    // let newSpot=[];
-    // for (let thespot of findSpot){
-    //     const {Reviews,...rest} =thespot;
-    //     newSpot.push({
-    //         ...rest,
-    //         "avgRating":Reviews.avgRating
-    //     })
-    // }
 
     res.setHeader("Content-Type","application/json");
     res.status(200);
-    // res.json({"Spots":newSpot,
-    //     page,
-    //     size
-    // });
-    // console.log( results)
+   
     res.json({
-        "Spots":results
+        "Spots":results,
+        page,
+        size
     })
 });
 
@@ -427,6 +380,7 @@ router.post('/:spotId/images',async (req,res)=>{
         console.log(el);
         if(!'0123456789'.includes(el)){
             res.status(403);
+            res.setHeader('Content-Type','application/json');
             return res.json({
                 "message":`${spotid}`
             })
@@ -437,6 +391,7 @@ router.post('/:spotId/images',async (req,res)=>{
     const foundSpot = await Spot.findByPk(Number(spotid));
     if (!foundSpot) {
         res.status(404);
+        res.setHeader('Content-Type','application/json');
         return res.json({
             "message": "Spot couldn't be found"
         })
@@ -479,6 +434,7 @@ router.post('/:spotId/bookings', requireAuth,async (req, res)=>{
 
     if(!foundSpot) {
         res.status(404);
+        res.setHeader('Content-Type','application/json');
         return res.json({
             "message": "Spot couldn't be found"
           })
@@ -486,6 +442,7 @@ router.post('/:spotId/bookings', requireAuth,async (req, res)=>{
 
     if(foundSpot.ownerId === user.id) {
         res.status(200);
+        res.setHeader('Content-Type','application/json');
         return res.json({
           "message":"the Spot is the owner's, choose another one"
         })
@@ -496,12 +453,14 @@ router.post('/:spotId/bookings', requireAuth,async (req, res)=>{
         });
 
         res.status(201);
-        res.json(newBooking)
+        res.setHeader('Content-Type','application/json');
+        res.json(newBooking);
     }
     catch(error){
 
         if(error.original.code ==="SQLITE_CONSTRAINT"){
             res.status(403);
+            res.setHeader('Content-Type','application/json');
             return res.json({
                 
                     "message": "Sorry, this spot is already booked for the specified dates",
@@ -513,7 +472,7 @@ router.post('/:spotId/bookings', requireAuth,async (req, res)=>{
             })
         }
         res.status(400);
-
+        res.setHeader('Content-Type','application/json');
         // return res.json(error.original.code)
         return res.json(
             {
@@ -535,6 +494,7 @@ router.post('/:spotId/reviews', async (req,res)=>{
     const {user} = req;
     if(!user){
         res.status(401);
+        res.setHeader('Content-Type','application/json');
         return res.json({
          "message": "havent log in"
        })
@@ -546,6 +506,7 @@ router.post('/:spotId/reviews', async (req,res)=>{
         spotid.split("").forEach(el=>{
             if(!'0123456789'.includes(el)){
                 res.status(404);
+                res.setHeader('Content-Type','application/json');
                 return res.json({
                   "message": "Spot couldn't be found"
                 });
@@ -561,6 +522,7 @@ router.post('/:spotId/reviews', async (req,res)=>{
         });
         if(!foundSpot){
             res.status(404);
+            res.setHeader('Content-Type','application/json');
                 return res.json({
                   "message": "Spot couldn't be found"
                 });
@@ -570,7 +532,7 @@ router.post('/:spotId/reviews', async (req,res)=>{
 
         if(!review || !stars){
             res.status(400);
-          
+            res.setHeader('Content-Type','application/json');
             return res.json(
                 {
                     "message": "Bad Request", 
@@ -585,7 +547,8 @@ router.post('/:spotId/reviews', async (req,res)=>{
 
         foundSpot.Reviews.forEach(el=>{
             if(el.userId===user.id) {
-     res.status(500);
+           res.status(500);
+           res.setHeader('Content-Type','application/json');
                 return res.json({
                       "message":
             "User already has a review for this spot"})
@@ -621,10 +584,12 @@ router.post('/',requireAuth,async (req, res)=>{
       
         // await setTokenCookie(res, safeUser);
         res.status(201);
+        res.setHeader('Content-Type','application/json');
         return res.json(newSpot);
     }
     catch(error){
         res.status(400);
+        res.setHeader('Content-Type','application/json');
         res.json({
           "message": "Bad Request", 
           "errors": { 
@@ -650,6 +615,7 @@ router.put('/:spotId', async (req, res)=>{
     const {user} = req;
     if(!user){
           res.status(401);
+          res.setHeader('Content-Type','application/json');
           return res.json({
             "message":"you haven't log in"
           })
@@ -663,12 +629,14 @@ router.put('/:spotId', async (req, res)=>{
         const theSpot = await Spot.findByPk(spodid);
         if(!theSpot) {
             res.status(404);
+            res.setHeader('Content-Type','application/json');
             return res.json({
                 "message": "Spot couldn't be found"
               })
         }
         if(theSpot.ownerId !== user.id){
             res.status(403);
+            res.setHeader('Content-Type','application/json');
             return res.json({
                 'message':"it is not your spot"
             })
@@ -676,6 +644,7 @@ router.put('/:spotId', async (req, res)=>{
 
         if (name.length>50 || lat<-90||lat>90||lng<-180||lng>180){
             res.status(400);
+            res.setHeader('Content-Type','application/json');
         return res.json({
             "message": "Bad Request", 
             "errors": {
@@ -703,9 +672,11 @@ router.put('/:spotId', async (req, res)=>{
 
     
         res.status(200);
+        res.setHeader('Content-Type','application/json');
         res.json(theSpot);
     }catch(error){
         res.status(400);
+        res.setHeader('Content-Type','application/json');
         res.json({
             "message": "Bad Request", 
             "errors": {
@@ -727,6 +698,7 @@ router.delete('/:spotId', async (req, res)=>{
     const {user} = req;
     if(!user){
           res.status(401);
+          res.setHeader('Content-Type','application/json');
           return res.json({
             "message":"you haven't log in"
           })
@@ -737,17 +709,20 @@ router.delete('/:spotId', async (req, res)=>{
     if(theSpot){
         if(theSpot.ownerId !== user.id){
             res.status(403);
+            res.setHeader('Content-Type','application/json');
             return res.json({
                 'message':"it's not your spot"
             })
         }
         await theSpot.destroy();
         res.status(200);
+        res.setHeader('Content-Type','application/json');
         return res.json({
             "message": "Successfully deleted"
           })
     }
     res.status(404);
+    res.setHeader('Content-Type','application/json');
     return res.json({
         "message": "Spot couldn't be found"
       })
