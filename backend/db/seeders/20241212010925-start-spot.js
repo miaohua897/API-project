@@ -22,7 +22,7 @@ const spotData = [
   // },
   {
     // ownerId:1,
-    userName: 'Demo-lition',
+    username: 'Demo-lition',
     address:'mars',
     city:'mars_x',
     state:'CA',
@@ -34,7 +34,7 @@ const spotData = [
     price:150
   },
   {
-    userName: 'FakeUser1',
+    username: 'FakeUser1',
     address:'moon',
     city:'moon_x',
     state:'CA',
