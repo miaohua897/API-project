@@ -134,10 +134,7 @@ router.get('/current', async (req, res)=>{
 
       res.setHeader('Content-Type','application/json');
       res.json({
-     
-         "Spots":  results
-
-        
+         "Spots":  results   
       });
   
       }
@@ -150,52 +147,60 @@ router.get('/current', async (req, res)=>{
     return res.json(user)
   })
 
-
+//   DROP SCHEMA snake_case CASCADE;
 router.get('/:spotId', async (req,res)=>{
 
     const spotid = req.params.spotId;
     console.log('======>',spotid);
-    const foundspot = await Spot.findOne({
-        attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt',[sequelize.fn('AVG',sequelize.col('stars')),'avgStarRating'],[sequelize.fn('SUM',sequelize.col('review')),'numReviews']],
-        where:{
-            id: Number(spotid)
-        },
-        include:[
-            {
-                model:Review,
-                attributes:[],
-            },
-            {
-                model:SpotImage,
-                as:'previewImage',
-                attributes:['id','url','preview'],
-                // where:{
-                //     id:Number(spotid)
-                // }
-            },
-            {
-                model:User,
-                as: 'Owner',
-                attributes:['id','firstName','lastName'],
-              
-            }
-        ]
-    })
-    console.log("foundspot",foundspot)
 
-    if(!foundspot.id){
+    const foundSpot = await Spot.findByPk(Number(spotid));
+    if(!foundSpot){
         res.status(404);
         res.setHeader('Content-Type','application/json');
         return res.json({
             "message": "Spot couldn't be found"
           })
     }
-    
-    const {previewImage,...rest} = foundspot.toJSON();
-    const formatFoundSpot = {...rest,'SpotImages':previewImage}
+    const foundOwener = await User.findOne({
+        attributes:['id', 'firstName', 'lastName'],
+        where:{
+            id:foundSpot.ownerId
+        }
+    });
+    const foundSpotImage = await SpotImage.findAll({
+        attributes:['id','url','preview'],
+        where:{
+            spotId:foundSpot.id
+        }
+    });
+    const foundReview = await Review.findAll({
+        attributes: [
+            [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+         ],
+         where: {
+            spotId: foundSpot.id
+         }
+    })
+    const foundReviewSecond = await Review.findAll({
+        where: {
+            spotId: foundSpot.id
+         }
+    })
+    const avgStarRating = foundReview[0].toJSON()
+
+
+ 
+
     res.status(200);
     res.setHeader('Content-Type','application/json');
-    res.json(formatFoundSpot);
+    res.json({
+        ...foundSpot.toJSON(),
+        "Owner":foundOwener,
+        "SpotImages":foundSpotImage,
+        ...avgStarRating,
+        'numReviews': foundReviewSecond.length
+    })
+    
 })
 
 
@@ -209,12 +214,12 @@ router.get('/', async (req, res)=>{
     const size = req.query.size || 20;
     const offset = (Number(page)-1)*Number(size);
     let where = {};
-    const minLat = req.query.minLat;
-    const maxLat = req.query.maxLat;
-    const minLng = req.query.minLng;
-    const maxLng = req.query.maxLng;
-    const minPrice = req.query.minPrice;
-    const maxPrice = req.query.maxPrice;
+    const minLat = req.query.minLat||-90;
+    const maxLat = req.query.maxLat||90;
+    const minLng = req.query.minLng||-180;
+    const maxLng = req.query.maxLng||180;
+    const minPrice = req.query.minPrice||0;
+    const maxPrice = req.query.maxPrice||30000;
 
     if(typeof page === "string") {
         const pageSplit = page.split('');
@@ -264,69 +269,132 @@ router.get('/', async (req, res)=>{
 
     console.log(minLat, maxLat,typeof minLat );
 
-    if(minLat) {
-         where.lat ={
-            [Op.gte] : Number(minLat)
-         }
+    // if(minLat) {
+    //      where.lat ={
+    //         [Op.gte] : Number(minLat)
+    //      }
         
-    }
-    // if(maxlat) where[[Op.lte]] = Number(maxlat);
-    if(maxLat) where.lat={
-        [Op.gte] : Number(minLng)
-    }
-    if(minLng) where.Lng ={
-        [Op.gte]: Number(minLng)
-    }
-    if(maxLng) where.Lng ={
-         [Op.lte] : Number(maxLng)
-    }
-    if(minPrice) where.price = {
-        [Op.gte] :Number(minPrice)
-    }
-    if(maxPrice) where.price ={
-        [Op.lte]: Number(maxPrice)
-    }
+    // }
+   
+    // if(maxLat) where.lat={
+    //     [Op.lte] : Number(minLng)
+    // }
+    // if(minLng) where.Lng ={
+    //     [Op.gte]: Number(minLng)
+    // }
+    // if(maxLng) where.Lng ={
+    //      [Op.lte] : Number(maxLng)
+    // }
+    // if(minPrice) where.price = {
+    //     [Op.gte] :Number(minPrice)
+    // }
+    // if(maxPrice) where.price ={
+    //     [Op.lte]: Number(maxPrice)
+    // }
   
 
-    console.log(where);
+    // console.log(where);
 
     const findSpot = await Spot.findAll({
         attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt'],
-        where,
-       
-        include:[{
-            model:Review,
-            attributes:[[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
+        where:{
+            lat:{
+                [Op.between]: [Number(minLat), Number(maxLat)]
+            },
+            lng:{
+                [Op.between]: [Number(minLng), Number(maxLng)]
+            },
+            price:{
+                [Op.between]: [Number(minPrice), Number(maxPrice)]
+            }
         },
-        {
-           model: SpotImage ,
-           as:'previewImage',
-           attributes:['url'],
-         
-        }],
-
-        group: ['Spot.id'],
         limit:Number(size),
         offset,
-        raw: true, 
-        nest: true  
     });
 
-    let newSpot=[];
-    for (let thespot of findSpot){
-        const {Reviews,...rest} =thespot;
-        newSpot.push({
-            ...rest,
-            "avgRating":Reviews.avgRating
-        })
+    console.log(findSpot);
+
+    if(findSpot.length === 0) {
+     
+        res.status(404);
+        res.setHeader('Content-Type','application/json');
+        return res.json({
+            "message": "Spot couldn't be found"
+          })
     }
+
+    let results = [];
+   
+
+    for (let findSpotel of findSpot){
+        let findSpotelObj =findSpotel.toJSON();
+        const foundReviews = await Review.findAll({
+            attributes:[[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
+            where:{
+                spotId:findSpotel.id
+            },
+            // group: ['spotId']
+        })
+        // console.log(foundReviews[0].toJSON(). avgRating)
+        findSpotelObj['avgRating'] = foundReviews[0].toJSON().avgRating? foundReviews[0].toJSON().avgRating:null;
+
+        // console.log(findSpotelObj);
+
+        const foundSpotImage = await SpotImage.findOne({
+            attributes:['url'],
+            where:{
+                spotId:findSpotel.id
+            }
+        });
+
+        findSpotelObj['previewImage'] =foundSpotImage? foundSpotImage.toJSON():null;
+        findSpotelObj['page'] =page;
+        findSpotelObj['size'] =size;
+        results.push(findSpotelObj);
+        
+    }
+
+    // const findSpot = await Spot.findAll({
+    //     attributes:['id','ownerId','address','city','state','country','lat','lng','name', 'description','price','createdAt','updatedAt'],
+    //     where,
+       
+    //     include:[{
+    //         model:Review,
+    //         attributes:[[sequelize.fn('AVG',sequelize.col('stars')),'avgRating']],
+    //     },
+    //     {
+    //        model: SpotImage ,
+    //        as:'previewImage',
+    //        attributes:['url'],
+         
+    //     }],
+
+    //     group: ['Spot.id'],
+    //     limit:Number(size),
+    //     offset,
+    //     raw: true, 
+    //     nest: true  
+    // });
+
+    // let newSpot=[];
+    // for (let thespot of findSpot){
+    //     const {Reviews,...rest} =thespot;
+    //     newSpot.push({
+    //         ...rest,
+    //         "avgRating":Reviews.avgRating
+    //     })
+    // }
 
     res.setHeader("Content-Type","application/json");
     res.status(200);
-    res.json({"Spots":newSpot,
-        page,
-        size
-    });
+    // res.json({"Spots":newSpot,
+    //     page,
+    //     size
+    // });
+    // console.log( results)
+    res.json({
+        "Spots":results
+    })
 });
 
 

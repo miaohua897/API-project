@@ -66,6 +66,7 @@ describe('\nGet details of a Spot from an id', function () {
                         'preview'
                     );
                     done();
+                    console.log(res.body);
                 });
         });
     });
