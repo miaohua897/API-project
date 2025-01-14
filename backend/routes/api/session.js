@@ -38,7 +38,8 @@ const validateLogin = [
 // Log in
 router.post(
     '/',
-    validateLogin,requireAuth,
+    validateLogin,
+    // requireAuth,
     async (req, res,next) => {
       // const { user } = req;
       const { credential, password } = req.body;
