@@ -41,7 +41,10 @@ const handleReserve=()=>{
                 
                <a style={{color:"white"}}>
                <FaStar style={{color:"white"}}/>
-                {thespot.avgStarRating?thespot.avgStarRating.toFixed(1):"New"}</a>
+                {thespot.avgStarRating?
+                // thespot.avgStarRating.toFixed(1)
+                thespot.avgStarRating
+                :"New"}</a>
                 <button style={{color:"red"}} onClick={handleReserve} id="noPreviewImagesimgButton">Reserve</button>
                 </div>
                
