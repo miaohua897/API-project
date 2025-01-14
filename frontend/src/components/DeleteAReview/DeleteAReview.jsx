@@ -27,7 +27,7 @@ function DeleteAReview( {isDeleteAReviewButtonModalOpen,
                 </button>
                 <div className='deleteAReviewConfirm'>
                 <h1>Confirm Delete</h1>
-                <p>Are you sure you want to remove this review from the listings</p>
+                <p>Are you sure you want to delete this review</p>
                 <button 
                 className='deleteAReviewConfirmButton'
                 onClick={handlerClickDelete}
@@ -35,7 +35,7 @@ function DeleteAReview( {isDeleteAReviewButtonModalOpen,
                     Yes (Delete Review)
                 </button>
                 <button 
-                className='deleteAReviewConfirmButton'
+                className='nodeleteAReviewConfirmButton'
                 onClick={closeDeleteAReviewButtonModal}
                  >
                     No (Keep Review)
