@@ -36,3 +36,17 @@
     padding:5px;
     gap:5px; 
  }
+ #closeloginform{
+    background-color: transparent;
+    border: none;
+ }
+ .submitLoginButton{
+    background-color: darkcyan;
+    margin-bottom: 10px;
+    color: aliceblue;
+    border:none
+ }
+ .submitLoginButtonDisable{
+    margin-bottom: 10px;
+    border:none
+ }

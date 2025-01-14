@@ -58,7 +58,7 @@ function LoginFormModal() {
                   </button>
                   <div className='loginFormContainer'>
                   <label>
-                    Username or Email
+                    Username or Email {'           '}
                     <input
                       type="text"
                       value={credential}
@@ -67,7 +67,7 @@ function LoginFormModal() {
                     />
                   </label>
                   <label>
-                    Password
+                    Password{'           '}
                     <input
                       type="password"
                       value={password}
@@ -78,7 +78,9 @@ function LoginFormModal() {
                   {errors.credential && (
                     <p>{errors.credential}</p>
                   )}
-                  <button type="submit"
+                  <button 
+                  className={credential.length<4 || password.length<6?'submitLoginButtonDisable':'submitLoginButton'}
+                  type="submit"
                   disabled={credential.length<4 || password.length<6}
                   >Log In</button>
                   </div>
