@@ -56,3 +56,8 @@
     border-radius: 10px;
     font-weight: bolder;
 }
+.createManageAspotbutton{
+  border: 2px solid darkcyan;
+  border-radius: 3px;
+  font-weight: bolder;
+}

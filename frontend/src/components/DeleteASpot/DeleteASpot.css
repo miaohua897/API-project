@@ -23,3 +23,8 @@
     z-index: 1001; 
     overflow-y: auto;
 }
+.deleteAspotbutton{
+    border: 2px solid darkcyan;
+    border-radius: 3px;
+    font-weight: bolder;
+}

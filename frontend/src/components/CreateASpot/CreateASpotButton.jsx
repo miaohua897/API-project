@@ -13,7 +13,9 @@ function CreateASpotButton(){
   };
   return (
     <div>
-      <button onClick={openModal}>Create a New Spot</button> {/* 点击按钮打开登录框 */}
+      <button 
+       className="createManageAspotbutton"
+      onClick={openModal}>Create a New Spot</button> {/* 点击按钮打开登录框 */}
       <CreateASpot 
       isOpen={isModalOpen} onClose={closeModal} /> 
     </div>

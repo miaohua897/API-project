@@ -63,7 +63,9 @@ function ManageYourSpots(){
                 
                     <p>{"$"+spot.price+"  night"}</p> 
                     <div className='updateDeleteButton'>
-                    <button onClick={()=>
+                    <button 
+                    className='updateAspotbutton'
+                    onClick={()=>
                       navigate(`/spots/${spot.id}/edit`)
                       }>Update</button>
                       {/* <button>Delete</button> */}

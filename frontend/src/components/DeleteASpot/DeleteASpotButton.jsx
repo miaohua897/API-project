@@ -13,7 +13,9 @@ function DeleteASpotButton({spotid}){
     }
     return (
         <div>
-          <button onClick={openDeleteASpotButtonModal}>{isDeleteASpotButtonModalOpen?null:'Delete'}</button> 
+          <button 
+          className="deleteAspotbutton"
+          onClick={openDeleteASpotButtonModal}>{isDeleteASpotButtonModalOpen?null:'Delete'}</button> 
           <DeleteASpot 
           isDeleteASpotButtonModalOpen={isDeleteASpotButtonModalOpen} 
           closeDeleteASpotButtonModal={closeDeleteASpotButtonModal} 
