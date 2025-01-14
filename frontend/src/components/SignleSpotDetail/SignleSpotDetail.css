@@ -1,20 +1,42 @@
+.SingleSpotDetialPage{
+    margin:10px;
+    padding-left: 20px;
+}
 .theSpotImages{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    justify-content: center;     /* 水平居中 */
-    align-items: center;         /* 垂直居中 */
-    gap:5px;
+    justify-content: center;     
+    align-items: center;        
+   */ 
+    display: grid;
+    grid-template-columns:  0.6fr 0.4fr;
+    grid-template-areas: 'left' 'right';
+    gap:10px;
+    margin: 20px;
+    justify-items: center;
+    align-items: center;
+
+
+}
+.left{
+    grid-area:mainSpotImage;
+}
+.right{
+    grid-area:noPreviewImageswithButton
 }
 .noPreviewImages{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap:5px;
 
 
 }
-#noPreviewImagesimg{
-    width: 50px;
-}
+
 .noPreviewImageswithButton{
     display: flex;
     flex-direction: column;
@@ -25,4 +47,16 @@
 #noPreviewImagesimgButton{
     width: 200px;
     height: 30px;
+}
+.mainSpotImage{
+    width: 90%;
+    height:auto;
+}
+.priceAndReview{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-left: 2px;
 }

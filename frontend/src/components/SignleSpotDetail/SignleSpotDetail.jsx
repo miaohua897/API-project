@@ -22,32 +22,40 @@ const handleReserve=()=>{
 }
 
     return (
-        <>     
+        <div className="SingleSpotDetialPage">     
         <div>
-                 <h1 style={{color:"white"}}>{thespot.name}</h1>
+                 <h1 style={{color:"black"}}>{thespot.name}</h1>
                  <div className="theSpotImages">     
                     {thespot.SpotImages?thespot.SpotImages.map((el,index)=>{
                     if(el.preview)
-                   return <img src={el.url} key={index} style={{height:200,width:400}}></img>
+                   return <img 
+                    // style={{height:500,width:800}} 
+                    className='mainSpotImage' src={el.url} key={index} ></img>
                 }):null}
                 <div className="noPreviewImageswithButton">
                 <div className="noPreviewImages">
                 {thespot.SpotImages?thespot.SpotImages.map((el,index)=>{
                     if(!el.preview)
-                   return <img src={el.url} key={index} style={{height:200,width:400}}  id="noPreviewImagesimg"></img>
+                   return <img src={el.url} key={index} style={{height:100,width:200}}  id="noPreviewImagesimg"></img>
                 }):null}
              
                 </div>
-                
-               <a style={{color:"white"}}>
-               <FaStar style={{color:"white"}}/>
+                <div className="priceAndReview">
+                <p>
+               {'$ '+thespot.price +' /night'}
+               </p>
+               <p style={{color:"black"}}>
+             
+               <FaStar style={{color:"black"}}/>
                 {thespot.avgStarRating?
                 // thespot.avgStarRating.toFixed(1)
                 // thespot.avgStarRating
 
             (Math.round(thespot.avgStarRating * 10) / 10===5||Math.round(thespot.avgStarRating * 10) / 10===4||Math.round(thespot.avgStarRating* 10) / 10===3||Math.round(thespot.avgStarRating * 10) / 10===2||Math.round(thespot.avgStarRating * 10) / 10===1? `${Math.round(thespot.avgStarRating * 10) / 10}.0`:Math.round(thespot.avgStarRating * 10) / 10)
   
-                :"New"}</a>
+                :"New"}</p>
+                </div>
+           
                 <button style={{color:"red"}} onClick={handleReserve} id="noPreviewImagesimgButton">Reserve</button>
                 </div>
                
@@ -55,18 +63,18 @@ const handleReserve=()=>{
            
                 {thespot.Owner?(
                     <>
-                          <p style={{color:"white"}}>{thespot.Owner.firstName}</p>
-                          <p style={{color:"white"}}>{thespot.Owner.lastName}</p>
+                          <p style={{color:"black"}}>{thespot.Owner.firstName}</p>
+                          <p style={{color:"black"}}>{thespot.Owner.lastName}</p>
                     </>
 
                 ):null}
           
-                <p style={{color:"white"}}>{"Location: "+thespot.city+','+thespot.state+','+thespot.country}</p>
-                <p style={{color:"white"}}>{thespot.description}</p>
+                <p style={{color:"black"}}>{"Location: "+thespot.city+','+thespot.state+','+thespot.country}</p>
+                <p style={{color:"black"}}>{thespot.description}</p>
         </div>
-                <h1 style={{color:"white"}}>Reviews:</h1>
-                <p style={{color:"white"}}>
-               <FaStar style={{color:"white"}}/>
+                <h1 style={{color:"black"}}>Reviews:</h1>
+                <p style={{color:"black"}}>
+               <FaStar style={{color:"black"}}/>
                 {thespot.avgStarRating?
                 // thespot.avgStarRating.toFixed(1)
                 // thespot.avgStarRating
@@ -75,7 +83,7 @@ const handleReserve=()=>{
   
                 :"New"}</p>
                 <SingleSpotReview spotId={spotId}/>
-        </>
+        </div>
 
     )
  

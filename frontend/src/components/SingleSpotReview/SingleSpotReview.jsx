@@ -39,9 +39,9 @@ console.log('thereview',thereview,'userReview',userReview ,'sessionUser',session
                 return (
                     <div key={index}>
                      <div >
-                        {el.User? <p style={{color:"white"}}>{el.User.firstName}</p>:null}
-                        <p style={{color:"white"}}>{el.createdAt.slice(0,7)}</p>
-                        <p style={{color:"white"}}>{el.review}</p>
+                        {el.User? <p >{el.User.firstName}</p>:null}
+                        <p >{el.createdAt.slice(0,7)}</p>
+                        <p>{el.review}</p>
                     </div>
                     {
                         sessionUser? el.User.id===sessionUser.id?
