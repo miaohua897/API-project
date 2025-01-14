@@ -11,21 +11,26 @@ function DeleteASpot({isDeleteASpotButtonModalOpen,closeDeleteASpotButtonModal,s
     }
  return (
     <div className="delete-modal-overlay">
+       
         <div className="deleteaspotModal">
         < >
-            <button 
+        <button 
             type="button" 
             id="closedeleteASpotform"
             onClick={closeDeleteASpotButtonModal} 
         >
             ✖️
-        </button>
+        </button> 
         <h1>Confirm Delete</h1>
         <p>Are you sure you want to remove this spot from the listings</p>
-        <button onClick={handlerClickDelete}>
+        <button 
+        className='handledeletespot'
+        onClick={handlerClickDelete}>
             Yes (Delete Spot)
         </button>
-        <button onClick={closeDeleteASpotButtonModal} >
+        <button 
+        className='handledNoeletespot'
+        onClick={closeDeleteASpotButtonModal} >
             No (Keep Spot)
         </button>
     </>

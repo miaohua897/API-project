@@ -1,0 +1,35 @@
+.BackMangeSpotButton{
+    /* border: 2px solid darkcyan; */
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    font-weight: bolder;
+    font-size: large;
+}
+.updateSpot{
+    background-color: darkgray;
+    border-radius: 5%;
+    margin: 10px;
+}
+.updataeASpotFormModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.updateUrl{
+    display: flex;
+    flex-direction: column;
+}
+.updateUrlInput{
+    width: 200px;
+}
+.updateSpotButton{
+    border: none;
+    background-color: darkcyan;
+    border-radius: 3px;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+}

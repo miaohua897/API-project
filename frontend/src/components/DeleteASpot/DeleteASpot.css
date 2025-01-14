@@ -22,9 +22,28 @@
     /* max-height: 80vh;  */
     z-index: 1001; 
     overflow-y: auto;
+  
 }
 .deleteAspotbutton{
     border: 2px solid darkcyan;
     border-radius: 3px;
     font-weight: bolder;
+
+    
+}
+.handledeletespot {
+    border: 2px solid darkcyan;
+    border-radius: 3px;
+    font-weight: bolder;
+    margin:10px;
+}
+.handledNoeletespot{
+    border: 2px solid darkcyan;
+    border-radius: 3px;
+    font-weight: bolder;
+    margin:10px;
+}
+#closedeleteASpotform{
+   border:none;
+   background-color: white;
 }

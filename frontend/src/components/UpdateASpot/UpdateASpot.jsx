@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {updateSpot} from '../../store/spot';
 import { useDispatch } from 'react-redux';
+import './UpdateASpot.css';
 
 import { useNavigate, useParams } from 'react-router-dom';
 function UpdateASpot(){
@@ -96,11 +97,17 @@ function UpdateASpot(){
                 console.log('createaspot',errors);
           }
     }
+    const handleBackMangeSpot=()=>{
+      navigate('/spots/current');
+    }
     return (
      
-        <div >
+        <div className='updateSpot'>
+          <button onClick={handleBackMangeSpot}
+          className='BackMangeSpotButton'
+          >✖️</button>
           <div className="updataeASpotFormModal">
-          <h1 style={{color:'white'}}>Wheres&apos; your place located?</h1>
+          <h1 style={{color:'white'}}>Update your Spot</h1>
           <p style={{color:'white'}}>Guests will only get your exact address once they booked a reservation.</p>
             <form className="updataeASpotContainer"
             onSubmit={handleupdateSpotSubmit}
@@ -111,6 +118,7 @@ function UpdateASpot(){
                 style={{color:'white'}}
                 >
                   Country
+                  <br></br>
                   <input type="text" 
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
@@ -121,6 +129,7 @@ function UpdateASpot(){
                 style={{color:'white'}}
                 >
                   Street Address
+                  <br></br>
                   <input type="text" 
                    value={address}
                    onChange={(e) => setAddress(e.target.value)}
@@ -131,6 +140,7 @@ function UpdateASpot(){
                 style={{color:'white'}}
                 >
                   City
+                  <br></br>
                   <input type="text" 
                      value={city}
                      onChange={(e) => setCity(e.target.value)}
@@ -141,6 +151,7 @@ function UpdateASpot(){
                 style={{color:'white'}}
                 >
                   State
+                  <br></br>
                   <input type="text" 
                    value={state}
                    onChange={(e) => setState(e.target.value)}
@@ -173,7 +184,7 @@ function UpdateASpot(){
                 <h1 style={{color:'white'}}>Set a base price for your spot</h1>
                 <p style={{color:'white'}}>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                 <label style={{color:'white'}}>  
-                    {'$ * / night' }
+                    {'$ * / night           ' }
                   <input type="text" 
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
@@ -182,37 +193,47 @@ function UpdateASpot(){
                 <p style={{color:'red'}}>{errors.price?errors.price:null}</p>
                 <h1 style={{color:'white'}}>Liven up your spot with photos</h1>
                 <p style={{color:'white'}}>Submit a link to at least one photo to publish your spot.</p>
+                <div className='updateUrl'>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={previewimage}
+                      className='updateUrlInput'
                      onChange={(e) => setPreviewimage(e.target.value)}
                   required placeholder='Preview Image URL'/>
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageOne}
+                     className='updateUrlInput'
                      onChange={(e) => setImageOne(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageTwo}
+                     className='updateUrlInput'
                      onChange={(e) => setImageTwo(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageThree}
+                     className='updateUrlInput'
                      onChange={(e) => setImageThree(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageFour}
+                     className='updateUrlInput'
                      onChange={(e) => setImageFour(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
-                <button type="submit">Create Spot</button>
+                </div>
+            
+                <button 
+                className='updateSpotButton'
+                type="submit">Update Spot</button>
               </div>
             </form>
           </div>
