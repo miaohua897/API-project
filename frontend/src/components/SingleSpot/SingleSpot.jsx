@@ -66,7 +66,10 @@ function SingleSpotPage(){
           transition: 'color 0.05s ease',
           cursor: 'pointer'  
         }}> <FaStar /></a> 
-            {'    '}    {spot.avgRating?spot.avgRating.toFixed(1):"New"} </li>
+            {'    '}    {spot.avgRating?
+            // spot.avgRating.toFixed(1)
+            spot.avgRating
+            :"New"} </li>
         </ul>
     
         <p>{"$"+spot.price+"  night"}</p> 
