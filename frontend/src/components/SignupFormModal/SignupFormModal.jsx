@@ -55,7 +55,7 @@ function SignupFormModal() {
       </button>
       <div className='signupformContainer'>
       <label>
-          Email
+          Email{'            '}
           <input
             type="text"
             value={email}
@@ -66,7 +66,7 @@ function SignupFormModal() {
         </label>
         {errors.email && <p>{errors.email}</p>}
         <label>
-          Username
+          Username{'            '}
           <input
             type="text"
             value={username}
@@ -77,7 +77,7 @@ function SignupFormModal() {
         </label>
         {errors.username && <p>{errors.username}</p>}
         <label>
-          First Name
+          First Name{'            '}
           <input
             type="text"
             value={firstName}
@@ -88,7 +88,7 @@ function SignupFormModal() {
         </label>
         {errors.firstName && <p>{errors.firstName}</p>}
         <label>
-          Last Name
+          Last Name{'            '}
           <input
             type="text"
             value={lastName}
@@ -99,7 +99,7 @@ function SignupFormModal() {
         </label>
         {errors.lastName && <p>{errors.lastName}</p>}
         <label>
-          Password
+          Password{'            '}
           <input
             type="password"
             value={password}
@@ -110,7 +110,7 @@ function SignupFormModal() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <label>
-          Confirm Password
+          Confirm Password{'            '}
           <input
             type="password"
             value={confirmPassword}
@@ -122,7 +122,11 @@ function SignupFormModal() {
         {errors.confirmPassword && (
           <p>{errors.confirmPassword}</p>
         )}
-        <button type="submit"
+        <button 
+        className={email.length===0||username.length<4||firstName.length===0||lastName.length===0||password.length<6||confirmPassword.length<6?
+          'submitSinupButtonDisable':'submitSinupButton'
+        }
+        type="submit"
         disabled={email.length===0||username.length<4||firstName.length===0||lastName.length===0||password.length<6||confirmPassword.length<6}
         >Sign Up</button>
       </div>

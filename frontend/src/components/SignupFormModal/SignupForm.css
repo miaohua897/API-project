@@ -27,4 +27,19 @@
 }
 #closesigninform{
     width: 10%;
+    border: none;
+    background-color: transparent;
+}
+.submitSinupButtonDisable{
+    border: none;
+    margin-bottom: 10px;
+}
+.submitSinupButton{
+    border:none;
+    margin-bottom: 10px;
+    background-color: darkcyan;
+    color: aliceblue;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
 }
