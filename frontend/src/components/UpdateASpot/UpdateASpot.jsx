@@ -65,7 +65,7 @@ function UpdateASpot(){
           };
         console.log(updateinfo,id);
         const newspot =  await  dispatch(updateSpot(updateinfo,id))
-        navigate(`/spots/${id}`);
+        // navigate(`/spots/${id}`);
         if(newspot.message !== 'Bad Request'){
             setCountry('');
             setAddress('');

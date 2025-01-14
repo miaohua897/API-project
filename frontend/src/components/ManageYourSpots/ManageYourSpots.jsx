@@ -32,9 +32,7 @@ function ManageYourSpots(){
                  spots.map(spot=>{
                     return (
                       <div className='managespotletout' key={spot.id}  
-                      onClick={()=>{
-                        navigate(`/spots/${spot.id}`);
-                      }}
+              
                       >
                     <div className="tooltip-container">
                     <img 

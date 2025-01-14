@@ -36,6 +36,10 @@ const router = createBrowserRouter([
         element: <SingleSpotPage />
       },
       {
+        path: '/spots/:id/edit',
+        element: <UpdateASpot />
+      },
+      {
         path: '/spots/:spotId',
         element: <SignleSpotDetail />
       } ,
@@ -43,11 +47,6 @@ const router = createBrowserRouter([
         path:'/spots/current',
         element: <ManageYourSpots />
       },
-      {
-        path: '/spots/:id/edit',
-        element: <UpdateASpot />
-      },
-      
       {
         path:'/spots/new',
         element: <CreateASpotPage />
