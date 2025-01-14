@@ -11,7 +11,7 @@ function CreateASpotPageButton(){
  
   return (
     <div>
-      <button onClick={handlenavigate}>Create a New Spot</button> {/* 点击按钮打开登录框 */}
+      <button onClick={handlenavigate} className='CreateASpotPageButton'>Create a New Spot</button> {/* 点击按钮打开登录框 */}
     </div>
 
   );

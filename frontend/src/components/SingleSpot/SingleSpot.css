@@ -11,15 +11,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    border: 1px dashed black;
-    background-color: wheat;
+    border: 3px solid darkcyan;
+  
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 15px;
     padding: 10px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-    background-color: rgb(248, 236, 243);
+    background-color: white;
 }
 .SingleSpotletout img{
     margin-top: 25px;
@@ -41,7 +41,7 @@
     gap:100px;
     list-style-type: none;
     margin:2px;
-  
+    padding:2px;
 }
 
 .tooltip-container {

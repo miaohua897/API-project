@@ -12,19 +12,18 @@ function Navigation({ isLoaded }) {
   return (
     <nav >
      <ul className='Nav_bar'>
-      <li>
+      <li className='homelogo'>
         <NavLink to="/" id='homeicon'>🌀Castlebnb</NavLink>
       </li>
       {
-        sessionUser? ( <li>
+        sessionUser? ( <li >
           <CreateASpotPageButton  
-      
           user={sessionUser}/> 
         </li>) : null
       }
      
       {isLoaded && (
-        <li>
+        <li className='profileButtoncontainer'>
           <ProfileButton user={sessionUser} />
         </li>
       )}

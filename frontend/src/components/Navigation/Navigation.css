@@ -14,18 +14,58 @@
 #homeicon {
     text-decoration: none;
 }
+.profileButton{
+    background-color:#e6e6e6; 
+    border: none;
+    font-size: 18px;
+    margin-top: 3px;
+}
+.profileButtoncontainer{
+ border: 2px solid darkcyan;
+ width: 50px;
+ height: 30px;
+ border-radius: 10px;
+ display: flex;
+ flex-direction: row; 
+ justify-content: flex-end;
+  align-items: center; 
+}
 .profile-dropdown{
     position: absolute;
-    background-color: #f9f9f9;
-
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px black;
     z-index: 1;
     border-radius: 4px;
     margin-left: -50px;
+    margin-top:180px;
     padding: 5px;
     list-style-type: none;
+ 
 }
 .hidden{
     display:none;
+
+}
+.homelogo{
+    font-size: 28px;
+    font-weight: bolder;
+}
+.menuitemcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    gap:5px;
+    margin:3px;
+    border-radius: 10px;
+}
+.DemoUser{
+    border: none;
+    background-color: darkcyan;
+    width: 80px;
+    border-radius: 10px;
+    font-weight: bolder;
 
 }

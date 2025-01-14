@@ -6,6 +6,7 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { useNavigate } from 'react-router-dom';
+import './Navigation.css';
 // import ManageYourSpots from '../ManageYourSpots/ManageYourSpots';
 
 function ProfileButton({ user }) {
@@ -59,26 +60,30 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      <button onClick={toggleMenu} className='profileButton'>
         <FaUserCircle />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
-          <>
+          <div className='menuitemcontainer'>
            <li>{"Hello, "+user.firstName}</li>
             {/* <li>{user.username}</li> */}
             {/* <li>{user.firstName} {user.lastName}</li> */}
             <li>{user.email}</li>
             <li >
-              <button onClick={manageYourSpotsHanlder}>manage spots</button>
+              <button onClick={manageYourSpotsHanlder}
+              className='DemoUser'
+              >manage spots</button>
             </li>
             <li>
-              <button onClick={logout}>Log Out</button>
+              <button onClick={logout}
+              className='DemoUser'
+              >Log Out</button>
             </li>
 
-          </>
+          </div>
         ) : (
-          <>
+          <div className='menuitemcontainer'>
             <OpenModalMenuItem
               itemText="Log In"
               onItemClick={closeMenu}
@@ -90,9 +95,10 @@ function ProfileButton({ user }) {
               modalComponent={<SignupFormModal />}
             />
             <button 
+            className='DemoUser'
             onClick={handleDemoUser}
             >Log in as Demo User</button>
-          </>
+          </div>
         )}
       </ul>
     </>
