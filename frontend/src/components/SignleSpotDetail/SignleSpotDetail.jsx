@@ -61,7 +61,10 @@ const handleReserve=()=>{
                 <h1 style={{color:"white"}}>Reviews:</h1>
                 <p style={{color:"white"}}>
                <FaStar style={{color:"white"}}/>
-                {thespot.avgStarRating?thespot.avgStarRating.toFixed(1):"New"}</p>
+                {thespot.avgStarRating?
+                // thespot.avgStarRating.toFixed(1)
+                thespot.avgStarRating
+                :"New"}</p>
                 <SingleSpotReview spotId={spotId}/>
         </>
 
