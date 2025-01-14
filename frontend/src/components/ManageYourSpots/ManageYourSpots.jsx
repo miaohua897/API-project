@@ -54,7 +54,12 @@ function ManageYourSpots(){
                     //   cursor: 'pointer'  
                     // }}
                     > <FaStar /></a> 
-                        {'    '}    {spot.avgRating?spot.avgRating.toFixed(1):"New"} </li>
+                        {'    '}    {spot.avgRating?
+                        // spot.avgRating.toFixed(1)
+                             
+            (Math.round(spot.avgRating * 10) / 10===5||Math.round(spot.avgRating * 10) / 10===4||Math.round(spot.avgRating * 10) / 10===3||Math.round(spot.avgRating * 10) / 10===2||Math.round(spot.avgRating * 10) / 10===1? `${Math.round(spot.avgRating * 10) / 10}.0`:Math.round(spot.avgRating * 10) / 10)
+  
+                        :"New"} </li>
                     </ul>
                 
                     <p>{"$"+spot.price+"  night"}</p> 
