@@ -231,7 +231,9 @@ function CreateASpot({ isOpen, onClose }){
                      onChange={(e) => setImageFour(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
-                <button type="submit">Create Spot</button>
+                <button 
+                style={{width:120,height:30}}
+                type="submit">Create Spot</button>
               </div>
             </form>
           </div>
