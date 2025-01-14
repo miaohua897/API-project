@@ -1,0 +1,28 @@
+.theSpotImages{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;     /* 水平居中 */
+    align-items: center;         /* 垂直居中 */
+    gap:5px;
+}
+.noPreviewImages{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:5px;
+
+
+}
+#noPreviewImagesimg{
+    width: 50px;
+}
+.noPreviewImageswithButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;     /* 水平居中 */
+    align-items: center;         /* 垂直居中 */
+    gap:5px;
+}
+#noPreviewImagesimgButton{
+    width: 200px;
+    height: 30px;
+}
