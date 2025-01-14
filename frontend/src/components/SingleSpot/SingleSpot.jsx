@@ -68,7 +68,7 @@ function SingleSpotPage(){
         }}> <FaStar /></a> 
             {'    '}    {spot.avgRating?
             // spot.avgRating.toFixed(1)
-            spot.avgRating
+            (parseInt(spot.avgRating*10.0)/10.0)
             :"New"} </li>
         </ul>
     
