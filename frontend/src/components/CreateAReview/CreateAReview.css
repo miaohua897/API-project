@@ -18,9 +18,24 @@ body{
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    width: 600px;
+    width: 400px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     max-height: 80vh; /* 设置最大高度（80% 的视口高度），避免页面内容过多 */
     overflow-y: auto; /* 允许垂直方向滚动 */
+  }
+
+  .starContainer{
+    display: flex;
+    flex-direction: row;
+  }
+  #reviewInputContainer{
+    width: 300px;
+    height: 100px;
+  }
+  .CreateAReviewFormContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }

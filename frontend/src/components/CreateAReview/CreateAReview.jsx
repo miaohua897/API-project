@@ -125,15 +125,17 @@ function CreateAReview({isCreateReviewOpen,createReviewonClose,spotId}){
                 ✖️
         </button>
         <div className="CreateAReviewFormContainer">
-        <label>
-                   How was your stay?
+        <label >
+                  <p>How was your stay?</p> 
                   <input type="text" 
                   value={newreview}
                   onChange={(e)=>setNewreview(e.target.value)}
                   placeholder="Leave your review here..."
-                  required />
+                  required 
+                  id='reviewInputContainer'
+                  />
         </label>
-        <ul>
+        <ul className='starContainer'>
 
         <div 
         onMouseEnter={handleMouseEnterOne}
@@ -192,10 +194,11 @@ function CreateAReview({isCreateReviewOpen,createReviewonClose,spotId}){
         </div>
      
         </ul>
-        </div>
         <button type="submit"
         disabled={rating===0||newreview.length<10}
         >Submit Your Review</button>
+        </div>
+      
         </form>
 
     </div>
