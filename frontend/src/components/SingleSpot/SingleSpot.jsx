@@ -66,10 +66,13 @@ function SingleSpotPage(){
           transition: 'color 0.05s ease',
           cursor: 'pointer'  
         }}> <FaStar /></a> 
-            {'    '}    {spot.avgRating?
-            // spot.avgRating.toFixed(1)
-            (parseInt(spot.avgRating*10.0)/10.0)
-            :"New"} </li>
+            {'    '}   
+             {spot.avgRating?
+           
+            (spot.avgRating===5||spot.avgRating===4||spot.avgRating===3||spot.avgRating===2||spot.avgRating===1? `${spot.avgRating}.0`:Math.round(spot.avgRating * 10) / 10)
+  
+            :"New"} 
+            </li>
         </ul>
     
         <p>{"$"+spot.price+"  night"}</p> 

@@ -20,7 +20,7 @@ const reviewData = [
     name: 'moon hotel',
     // spotId:1,
     review: 'not like it',
-    stars: 5
+    stars: 5.0
   }
 ]
 
