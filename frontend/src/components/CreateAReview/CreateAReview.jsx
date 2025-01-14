@@ -194,7 +194,9 @@ function CreateAReview({isCreateReviewOpen,createReviewonClose,spotId}){
         </div>
      
         </ul>
-        <button type="submit"
+        <button 
+        className={rating===0||newreview.length<10?'submitYourReviewButtondisable':'submitYourReviewButton'}
+        type="submit"
         disabled={rating===0||newreview.length<10}
         >Submit Your Review</button>
         </div>

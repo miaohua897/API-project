@@ -39,3 +39,33 @@ body{
     justify-content: center;
     align-items: center;
   }
+  .createAreviewButton{
+    width: 200px;
+    height: 30px;
+    border: none;
+    background-color: darkcyan;
+    border-radius: 10px;
+    margin: 5px;
+  }
+  #closeCreateAReview{
+   background-color: transparent;
+   border: none;
+  }
+  .submitYourReviewButton{
+    width: 200px;
+    height: 30px;
+    border: none;
+    background-color: darkcyan;
+    border-radius: 10px;
+    margin: 5px;
+    color:white;
+}
+.submitYourReviewButtondisable{
+  width: 200px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  border-radius: 10px;
+  margin: 5px;
+  color:white;
+}

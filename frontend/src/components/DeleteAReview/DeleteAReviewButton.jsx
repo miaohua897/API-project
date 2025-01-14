@@ -12,7 +12,9 @@ function DeleteAReviewButton({reviewid}){
     }
     return (
         <div>
-          <button onClick={openDeleteAReviewButtonModal}>{isDeleteAReviewButtonModalOpen?null:'Delete'}</button> 
+          <button 
+          className="DeleteAReviewButtonModal"
+          onClick={openDeleteAReviewButtonModal}>{isDeleteAReviewButtonModalOpen?null:'Delete'}</button> 
           <DeleteAReview
           isDeleteAReviewButtonModalOpen={isDeleteAReviewButtonModalOpen} 
           closeDeleteAReviewButtonModal={closeDeleteAReviewButtonModal} 

@@ -11,7 +11,9 @@ function CreateAReviewButton({spotId}){
     };
     return (
       <div>
-        <button onClick={openModal}>Post Your Review</button> 
+        <button 
+        className='createAreviewButton'
+        onClick={openModal}>Post Your Review</button> 
         <CreateAReview isCreateReviewOpen={isModalOpen} createReviewonClose={closeModal} spotId={spotId}/> 
       </div>
     );

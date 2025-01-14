@@ -56,7 +56,7 @@ const handleReserve=()=>{
                 :"New"}</p>
                 </div>
            
-                <button style={{color:"red"}} onClick={handleReserve} id="noPreviewImagesimgButton">Reserve</button>
+                <button  onClick={handleReserve} id="noPreviewImagesimgButton">Reserve</button>
                 </div>
                
                  </div>
