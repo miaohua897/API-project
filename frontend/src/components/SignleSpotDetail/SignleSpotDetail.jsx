@@ -63,14 +63,14 @@ const handleReserve=()=>{
            
                 {thespot.Owner?(
                     <>
-                          <p style={{color:"black"}}>{thespot.Owner.firstName}</p>
-                          <p style={{color:"black"}}>{thespot.Owner.lastName}</p>
+                          <a style={{color:"black"}}>{'Hosted by:  '+thespot.Owner.firstName}</a>
+                          <a style={{color:"black"}}>{thespot.Owner.lastName}</a>
                     </>
 
                 ):null}
           
                 <p style={{color:"black"}}>{"Location: "+thespot.city+','+thespot.state+','+thespot.country}</p>
-                <p style={{color:"black"}}>{thespot.description}</p>
+                <p style={{color:"black"}}>{'Description:  '+thespot.description}</p>
         </div>
                 <h1 style={{color:"black"}}>Reviews:</h1>
                 <p style={{color:"black"}}>
