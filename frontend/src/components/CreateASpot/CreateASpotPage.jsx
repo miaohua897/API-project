@@ -125,7 +125,8 @@ function CreateASpotPage(){
      
         <div >
           <div className='createASpotPage'>
-          <h1 style={{color:'black'}}>Wheres&apos; your place located?</h1>
+        <h1>Create a new Spot</h1>
+          <h2 style={{color:'black'}}>Wheres&apos; your place located?</h2>
           <p style={{color:'black'}}>Guests will only get your exact address once they booked a reservation.</p>
             <form className="loginContainer"
             onSubmit={handlecreateSpotSubmit}
@@ -164,7 +165,7 @@ function CreateASpotPage(){
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.state?errors.state:null}</p>
-                <h1 style={{color:'black'}}>Describe your place to guests</h1>
+                <h2 style={{color:'black'}}>Describe your place to guests</h2>
                 <p style={{color:'black'}}>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
                 <label style={{color:'black'}}>   
                   <input type="text" 
@@ -173,7 +174,7 @@ function CreateASpotPage(){
                   required placeholder='Please write at least 30 characters'/>
                 </label>
                 <p style={{color:'red'}}>{errors.description?errors.description:null}</p>
-                <h1 style={{color:'black'}}>Create a title for your spot</h1>
+                <h2 style={{color:'black'}}>Create a title for your spot</h2>
                 <p style={{color:'black'}}>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
                 <label style={{color:'black'}}>   
                   <input type="text" 
@@ -183,7 +184,7 @@ function CreateASpotPage(){
                   placeholder='Name of your spot'/>
                 </label>
                 <p style={{color:'red'}}>{errors.name?errors.name:null}</p>
-                <h1 style={{color:'black'}}>Set a base price for your spot</h1>
+                <h2 style={{color:'black'}}>Set a base price for your spot</h2>
                 <p style={{color:'black'}}>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                 <label style={{color:'black'}}>  
                     {'$ * / night' }{'                 '}
@@ -193,7 +194,7 @@ function CreateASpotPage(){
                   required placeholder='Price per night (USD)'/>
                 </label>
                 <p style={{color:'red'}}>{errors.price?errors.price:null}</p>
-                <h1 style={{color:'black'}}>Liven up your spot with photos</h1>
+                <h2 style={{color:'black'}}>Liven up your spot with photos</h2>
                 <p style={{color:'black'}}>Submit a link to at least one photo to publish your spot.</p>
                 <label style={{color:'black'}}>   
                   <input type="text" 

@@ -125,6 +125,7 @@ function CreateASpot({ isOpen, onClose }){
      
         <div className="modal-overlay">
           <div className="CreateASpotFormModal">
+          
           <h1 style={{color:'black'}}>Wheres&apos; your place located?</h1>
           <p style={{color:'black'}}>Guests will only get your exact address once they booked a reservation.</p>
             <form className="loginContainer"
