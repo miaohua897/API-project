@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import CreateASpotPageButton  from '../CreateASpot/CreateASpotPageButton';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -14,13 +15,13 @@ function Navigation({ isLoaded }) {
       <li>
         <NavLink to="/" id='homeicon'>🌀Castlebnb</NavLink>
       </li>
-      {/* {
+      {
         sessionUser? ( <li>
           <CreateASpotPageButton  
       
           user={sessionUser}/> 
         </li>) : null
-      } */}
+      }
      
       {isLoaded && (
         <li>

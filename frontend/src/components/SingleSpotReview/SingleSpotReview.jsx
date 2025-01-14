@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {getSingleSpotReview} from '../../store/spot';
-// import CreateAReviewButton from '../CreateAReview/CreateAReviewButton';
-// import DeleteAReviewButton from '../DeleteAReview/DeleteAReviewButton';
+import CreateAReviewButton from '../CreateAReview/CreateAReviewButton';
+import DeleteAReviewButton from '../DeleteAReview/DeleteAReviewButton';
 function SingleSpotReview({spotId}){
     const sessionUser = useSelector(state => state.session.user);
     console.log('sessionUserFromSpotdetaiil',sessionUser)
@@ -14,8 +14,8 @@ function SingleSpotReview({spotId}){
  const thespot =useSelector(state=>state.spot);
 
  if(Object.keys(thespot).length===0) return ;
-//  if(thespot.reviews === undefined) 
-//     return (<CreateAReviewButton spotId={spotId}/>);
+ if(thespot.reviews === undefined) 
+    return (<CreateAReviewButton spotId={spotId}/>);
 
 
  console.log('thespot',thespot)
@@ -33,7 +33,7 @@ console.log('thereview',thereview,'userReview',userReview ,'sessionUser',session
     return (
         <>
        
-        {/* {sessionUser&&userReview.length===0?<CreateAReviewButton spotId={spotId}/>:null} */}
+        {sessionUser&&userReview.length===0?<CreateAReviewButton spotId={spotId}/>:null}
         {
             thereview?thereview.map((el,index)=>{
                 return (
@@ -43,9 +43,9 @@ console.log('thereview',thereview,'userReview',userReview ,'sessionUser',session
                         <p style={{color:"white"}}>{el.createdAt.slice(0,7)}</p>
                         <p style={{color:"white"}}>{el.review}</p>
                     </div>
-                    {/* {el.User.id===sessionUser.id?
+                    {el.User.id===sessionUser.id?
                     <DeleteAReviewButton reviewid={el.id}/>:null
-                    } */}
+                    }
                     
                     </div>
                   

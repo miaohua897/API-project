@@ -1,0 +1,23 @@
+.modalOverlayReview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 背景色，带透明度 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* 确保模态框在顶部 */
+  }
+
+  .createReviewContainer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 600px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-height: 80vh; /* 设置最大高度（80% 的视口高度），避免页面内容过多 */
+    overflow-y: auto; /* 允许垂直方向滚动 */
+  }
