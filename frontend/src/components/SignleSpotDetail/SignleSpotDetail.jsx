@@ -43,7 +43,10 @@ const handleReserve=()=>{
                <FaStar style={{color:"white"}}/>
                 {thespot.avgStarRating?
                 // thespot.avgStarRating.toFixed(1)
-                thespot.avgStarRating
+                // thespot.avgStarRating
+
+            (Math.round(thespot.avgStarRating * 10) / 10===5||Math.round(thespot.avgStarRating * 10) / 10===4||Math.round(thespot.avgStarRating* 10) / 10===3||Math.round(thespot.avgStarRating * 10) / 10===2||Math.round(thespot.avgStarRating * 10) / 10===1? `${Math.round(thespot.avgStarRating * 10) / 10}.0`:Math.round(thespot.avgStarRating * 10) / 10)
+  
                 :"New"}</a>
                 <button style={{color:"red"}} onClick={handleReserve} id="noPreviewImagesimgButton">Reserve</button>
                 </div>
@@ -66,7 +69,10 @@ const handleReserve=()=>{
                <FaStar style={{color:"white"}}/>
                 {thespot.avgStarRating?
                 // thespot.avgStarRating.toFixed(1)
-                thespot.avgStarRating
+                // thespot.avgStarRating
+
+            (Math.round(thespot.avgStarRating * 10) / 10===5||Math.round(thespot.avgStarRating * 10) / 10===4||Math.round(thespot.avgStarRating* 10) / 10===3||Math.round(thespot.avgStarRating * 10) / 10===2||Math.round(thespot.avgStarRating * 10) / 10===1? `${Math.round(thespot.avgStarRating * 10) / 10}.0`:Math.round(thespot.avgStarRating * 10) / 10)
+  
                 :"New"}</p>
                 <SingleSpotReview spotId={spotId}/>
         </>
