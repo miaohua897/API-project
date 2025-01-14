@@ -1,0 +1,38 @@
+.LoginFormModal{
+    /* display: none;  */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+.logninContainer{
+    background-color: white;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center;    */
+    margin: 0 auto; 
+    border-radius: 5px;
+}
+
+.logninContainer button{
+    width: 60px;
+}
+.logninContainerhidden{
+    display: none;
+}
+/* #closeloginform{
+    left:0;
+} */
+ .loginFormContainer{
+    display: flex;
+    flex-direction: column;
+     justify-content: center;
+    align-items: center;  
+    padding:5px;
+    gap:5px; 
+ }

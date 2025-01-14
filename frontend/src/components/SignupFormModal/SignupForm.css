@@ -1,0 +1,30 @@
+.signUpModal{
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+.signupContainer{
+    background-color: white;
+    width: 50%;
+    display: flex;
+     flex-direction: column; 
+    /* justify-content: center; 
+    align-items: center;    */
+    margin: 0 auto; 
+    border-radius: 5px;
+}
+.signupformContainer{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;  
+    padding:5px;
+    gap:5px; 
+}
+#closesigninform{
+    width: 10%;
+}

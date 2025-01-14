@@ -40,16 +40,26 @@ function SignupFormModal() {
       confirmPassword: "Confirm Password field must be the same as the Password field"
     });
   };
+  const togglesignupMenu= (e) => {
+    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    window.location.reload();
+
+  };
 
   return (
-    <>
+    <div className='signUpModal'>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form onSubmit={handleSubmit} className='signupContainer'>
+      <button  onClick={togglesignupMenu} id ='closesigninform'>
+                    ✖️
+      </button>
+      <div className='signupformContainer'>
+      <label>
           Email
           <input
             type="text"
             value={email}
+            placeholder="Enter your Email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -60,6 +70,7 @@ function SignupFormModal() {
           <input
             type="text"
             value={username}
+             placeholder="Enter your Username"
             onChange={(e) => setUsername(e.target.value)}
             required
           />
@@ -70,6 +81,7 @@ function SignupFormModal() {
           <input
             type="text"
             value={firstName}
+             placeholder="Enter your First Name"
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
@@ -80,6 +92,7 @@ function SignupFormModal() {
           <input
             type="text"
             value={lastName}
+             placeholder="Enter your Last Name"
             onChange={(e) => setLastName(e.target.value)}
             required
           />
@@ -90,6 +103,7 @@ function SignupFormModal() {
           <input
             type="password"
             value={password}
+             placeholder="Enter your Password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
@@ -100,6 +114,7 @@ function SignupFormModal() {
           <input
             type="password"
             value={confirmPassword}
+             placeholder="Comfirm your Password"
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
@@ -107,9 +122,13 @@ function SignupFormModal() {
         {errors.confirmPassword && (
           <p>{errors.confirmPassword}</p>
         )}
-        <button type="submit">Sign Up</button>
+        <button type="submit"
+        disabled={email.length===0||username.length<4||firstName.length===0||lastName.length===0||password.length<6||confirmPassword.length<6}
+        >Sign Up</button>
+      </div>
+      
       </form>
-    </>
+    </div>
   );
 }
 
