@@ -9,16 +9,27 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   return (
-    <ul>
+    <nav >
+     <ul className='Nav_bar'>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" id='homeicon'>🌀Castlebnb</NavLink>
       </li>
+      {/* {
+        sessionUser? ( <li>
+          <CreateASpotPageButton  
+      
+          user={sessionUser}/> 
+        </li>) : null
+      } */}
+     
       {isLoaded && (
         <li>
           <ProfileButton user={sessionUser} />
         </li>
       )}
     </ul>
+    </nav>
+   
   );
 }
 
