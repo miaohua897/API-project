@@ -7,21 +7,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const spotData = [
-  // {
-  //   username: "JohnSmith",
-  //   address: "123 Disney Lane",
-  //   city: "San Francisco",
-  //   state: "California",
-  //   country: "United States of America",
-  //   lat: 37.7645358,
-  //   lng: -122.4730327,
-  //   name: "App Academy",
-  //   description: "Place where web developers are created",
-  //   price: 123,
-  
-  // },
+
   {
-    // ownerId:1,
     username: 'Demo-lition',
     address:'mars',
     city:'mars_x',
@@ -42,6 +29,83 @@ const spotData = [
     lat:37,
     lng:-122,
     name:'moon hotel',
+    description:'transportion is excluded',
+    price:150
+  },
+  
+  {
+    username: 'Demo-lition',
+    address:'mercury',
+    city:'mercury_x',
+    state:'CA',
+    country:'Mercury',
+    lat:37,
+    lng:-122,
+    name:'mercury hotel',
+    description:'transportion is excluded',
+    price:150
+  },
+  
+  {
+    username: 'FakeUser1',
+    address:'venus',
+    city:'venus_x',
+    state:'CA',
+    country:'Venus',
+    lat:37,
+    lng:-122,
+    name:'venus hotel',
+    description:'transportion is excluded',
+    price:150
+  }
+  ,
+  {
+    username: 'FakeUser1',
+    address:'jupiter',
+    city:'jupiter_x',
+    state:'CA',
+    country:'Jupiter',
+    lat:37,
+    lng:-122,
+    name:'jupiter hotel',
+    description:'transportion is excluded',
+    price:150
+  },
+  {
+    username: 'Demo-lition',
+    address:'saturn',
+    city:'saturn_x',
+    state:'CA',
+    country:'Saturn',
+    lat:37,
+    lng:-122,
+    name:'saturn hotel',
+    description:'transportion is excluded',
+    price:150
+  }
+  ,
+  {
+    username: 'FakeUser1',
+    address:'uranus',
+    city:'uranus_x',
+    state:'CA',
+    country:'Uranus',
+    lat:37,
+    lng:-122,
+    name:'uranus hotel',
+    description:'transportion is excluded',
+    price:150
+  }
+  ,
+  {
+    username: 'Demo-lition',
+    address:'neptune',
+    city:'neptune_x',
+    state:'CA',
+    country:'Neptune',
+    lat:37,
+    lng:-122,
+    name:'neptune hotel',
     description:'transportion is excluded',
     price:150
   }
