@@ -43,10 +43,13 @@ console.log('thereview',thereview,'userReview',userReview ,'sessionUser',session
                         <p style={{color:"white"}}>{el.createdAt.slice(0,7)}</p>
                         <p style={{color:"white"}}>{el.review}</p>
                     </div>
-                    {el.User.id===sessionUser.id?
-                    <DeleteAReviewButton reviewid={el.id}/>:null
+                    {
+                        sessionUser? el.User.id===sessionUser.id?
+                            <DeleteAReviewButton reviewid={el.id}/>:null
+                            :null
+                            
                     }
-                    
+                   
                     </div>
                   
 

@@ -132,7 +132,7 @@ function CreateASpotPage(){
             >
             
               <div className="CreateASpotFormContainer">
-                <label>
+                <label style={{color:'white'}}>
                   Country
                   <input type="text" 
                   value={country}
@@ -140,7 +140,7 @@ function CreateASpotPage(){
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.country?errors.country:null}</p>
-                <label>
+                <label style={{color:'white'}}>
                   Street Address
                   <input type="text" 
                    value={address}
@@ -148,7 +148,7 @@ function CreateASpotPage(){
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.address?errors.address:null}</p>
-                <label>
+                <label style={{color:'white'}}>
                   City
                   <input type="text" 
                      value={city}
@@ -156,7 +156,7 @@ function CreateASpotPage(){
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.city?errors.city:null}</p>
-                <label>
+                <label style={{color:'white'}}>
                   State
                   <input type="text" 
                    value={state}
@@ -164,18 +164,18 @@ function CreateASpotPage(){
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.state?errors.state:null}</p>
-                <h1>Describe your place to guests</h1>
-                <p>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
-                <label>   
+                <h1 style={{color:'white'}}>Describe your place to guests</h1>
+                <p style={{color:'white'}}>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
+                <label style={{color:'white'}}>   
                   <input type="text" 
                      value={description}
                      onChange={(e) => setDescription(e.target.value)}
                   required placeholder='Please write at least 30 characters'/>
                 </label>
                 <p style={{color:'red'}}>{errors.description?errors.description:null}</p>
-                <h1>Create a title for your spot</h1>
-                <p>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
-                <label>   
+                <h1 style={{color:'white'}}>Create a title for your spot</h1>
+                <p style={{color:'white'}}>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
+                <label style={{color:'white'}}>   
                   <input type="text" 
                           value={name}
                           onChange={(e) => setName(e.target.value)}
@@ -183,9 +183,9 @@ function CreateASpotPage(){
                   placeholder='Name of your spot'/>
                 </label>
                 <p style={{color:'red'}}>{errors.name?errors.name:null}</p>
-                <h1>Set a base price for your spot</h1>
-                <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
-                <label>  
+                <h1 style={{color:'white'}}>Set a base price for your spot</h1>
+                <p style={{color:'white'}}>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+                <label style={{color:'white'}}>  
                     {'$ * / night' }
                   <input type="text" 
                     value={price}
@@ -193,39 +193,39 @@ function CreateASpotPage(){
                   required placeholder='Price per night (USD)'/>
                 </label>
                 <p style={{color:'red'}}>{errors.price?errors.price:null}</p>
-                <h1>Liven up your spot with photos</h1>
-                <p>Submit a link to at least one photo to publish your spot.</p>
-                <label>   
+                <h1 style={{color:'white'}}>Liven up your spot with photos</h1>
+                <p style={{color:'white'}}>Submit a link to at least one photo to publish your spot.</p>
+                <label style={{color:'white'}}>   
                   <input type="text" 
                      value={previewimage}
                      onChange={(e) => setPreviewimage(e.target.value)}
                   required placeholder='Preview Image URL'/>
                 </label>
-                <label>   
+                <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageOne}
                      onChange={(e) => setImageOne(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
-                <label>   
+                <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageTwo}
                      onChange={(e) => setImageTwo(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
-                <label>   
+                <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageThree}
                      onChange={(e) => setImageThree(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
-                <label>   
+                <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageFour}
                      onChange={(e) => setImageFour(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
-                <button type="submit">Create Spot</button>
+                <button  type="submit">Create Spot</button>
               </div>
             </form>
           </div>

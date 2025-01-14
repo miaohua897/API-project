@@ -1,3 +1,6 @@
+body{
+  color:white;
+}
 .modalOverlayReview {
     position: fixed;
     top: 0;
