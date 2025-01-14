@@ -39,6 +39,15 @@ const reviewData = [
     review: 'like it,yeah',
     stars: 5.0
   }
+  ,
+  {
+    // userId:2,
+    username: 'FakeUser1',
+    name: 'saturn hotel',
+    // spotId:1,
+    review: 'like it,like it',
+    stars: 5.0
+  }
 ]
 
 /** @type {import('sequelize-cli').Migration} */
