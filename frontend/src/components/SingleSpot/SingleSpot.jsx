@@ -69,7 +69,7 @@ function SingleSpotPage(){
             {'    '}   
              {spot.avgRating?
            
-            (spot.avgRating===5||spot.avgRating===4||spot.avgRating===3||spot.avgRating===2||spot.avgRating===1? `${spot.avgRating}.0`:Math.round(spot.avgRating * 10) / 10)
+            (Math.round(spot.avgRating * 10) / 10===5||Math.round(spot.avgRating * 10) / 10===4||Math.round(spot.avgRating * 10) / 10===3||Math.round(spot.avgRating * 10) / 10===2||Math.round(spot.avgRating * 10) / 10===1? `${spot.avgRating}.0`:Math.round(spot.avgRating * 10) / 10)
   
             :"New"} 
             </li>
