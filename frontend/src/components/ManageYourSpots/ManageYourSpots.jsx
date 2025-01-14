@@ -20,7 +20,7 @@ function ManageYourSpots(){
     );
   const handleimage=(value)=>{
         if(!value) return "https://res.cloudinary.com/dsgfqkf7n/image/upload/eight_mezc8g?_a=BAMCkGfi0";
-        else return value.url;
+        else return value;
     }
   
    return (
@@ -38,6 +38,7 @@ function ManageYourSpots(){
                     <img 
                       src={handleimage(spot.previewImage
                       )} 
+                      style={{height:130,width:260}} 
                       />
                       {/* <p>{spot.previewImage}</p> */}
                        <span className='tooltiptext'>{spot.name}</span>
@@ -61,11 +62,16 @@ function ManageYourSpots(){
                     </ul>
                 
                     <p>{"$"+spot.price+"  night"}</p> 
-                      <button onClick={()=>
+                    <div className='updateDeleteButton'>
+                    <button onClick={()=>
                       navigate(`/spots/${spot.id}/edit`)
                       }>Update</button>
                       {/* <button>Delete</button> */}
                       <DeleteASpotButton spotid={spot.id}/>
+                    </div>
+                    
+                    
+
                       </div>
                     )    
                }):null
