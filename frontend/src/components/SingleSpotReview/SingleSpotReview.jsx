@@ -29,18 +29,28 @@ if(thereview &&sessionUser) {
     userReview=[];
 }
 console.log('thereview',thereview,'userReview',userReview ,'sessionUser',sessionUser);
+const thereviewReverse=(thereview)=>{
+    let result =[];
+    for(let i = thereview.length-1;i>=0;i--){
+      result.push(thereview[i]);
+    }
+    // console.log('result',result)
+    return result;
+}
  
     return (
         <>
        
         {sessionUser&&userReview.length===0?<CreateAReviewButton spotId={spotId}/>:null}
         {
-            thereview?thereview.map((el,index)=>{
+            thereview?
+            
+            thereviewReverse(thereview).map((el,index)=>{
                 return (
                     <div key={index}>
                      <div >
-                        {el.User? <p >{el.User.firstName}</p>:null}
-                        <p >{el.createdAt.slice(0,7)}</p>
+                        {el.User? <p >{'Name:'+el.User.firstName}</p>:null}
+                        <p >{"Date: "+el.createdAt.slice(0,7)}</p>
                         <p>{el.review}</p>
                     </div>
                     {
@@ -54,7 +64,8 @@ console.log('thereview',thereview,'userReview',userReview ,'sessionUser',session
                   
 
                 )
-            }):null
+            })
+            :null
         }
         </>
     )

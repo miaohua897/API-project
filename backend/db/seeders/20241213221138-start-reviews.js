@@ -21,6 +21,23 @@ const reviewData = [
     // spotId:1,
     review: 'not like it',
     stars: 5.0
+  },
+  {
+    // userId:2,
+    username: 'FakeUser1',
+    name: 'mercury hotel',
+    // spotId:1,
+    review: 'like it',
+    stars: 4.0
+  }
+  ,
+  {
+    // userId:2,
+    username: 'Demo-lition',
+    name: 'mercury hotel',
+    // spotId:1,
+    review: 'like it,yeah',
+    stars: 5.0
   }
 ]
 
