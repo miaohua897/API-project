@@ -1,13 +1,19 @@
 import { useDispatch } from 'react-redux';
-import {deleteASpot} from '../../store/spot';
+import {deleteASpot,removeASpot} from '../../store/spot';
 import './DeleteASpot.css';
+import { useNavigate } from 'react-router-dom';
 function DeleteASpot({isDeleteASpotButtonModalOpen,closeDeleteASpotButtonModal,spotid}){
    const dispatch=useDispatch();
+   const navigate=useNavigate();
     if(!isDeleteASpotButtonModalOpen) return null;
     const handlerClickDelete=()=>{
+     
         // console.log('delete a spot',spotid);
         dispatch(deleteASpot(spotid));
-        window.location.reload();
+       dispatch(removeASpot(spotid));
+        closeDeleteASpotButtonModal();
+        navigate('/spots/current');
+    
     }
  return (
     <div className="delete-modal-overlay">

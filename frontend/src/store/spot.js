@@ -17,6 +17,14 @@ export const deleteASpot = (spotid) => async () => {
 
     return response;
 };
+
+export const removeASpot = (spotid) => {
+    return {
+      type: 'REMOVE_A_Spot',
+      payload:spotid
+    };
+  };
+
 export const deleteAReview = (reviewid) => async () => {
     const response = await csrfFetch(`/api/reviews/${reviewid}`, {
       method: 'DELETE'
@@ -292,6 +300,22 @@ const spotReducer = (state={},action)=>{
              // console.log('REMOVE_A_Review',obj,state)
              return obj;
            }
+        case 'REMOVE_A_Spot':
+            
+              {
+                console.log('REMOVE_A_Spot',state,action.payload);
+                const obj={...state};
+                obj.currentSpot.Spots.map((el,index)=>{
+                    if(el.id===action.payload){
+                        // console.log('helloworld')
+                        obj.currentSpot.Spots.splice(index,1);
+                    }
+                  
+                })
+                console.log('REMOVE_A_Spot',obj,state);
+                return obj;
+              }
+            
         
         default:
             return state;

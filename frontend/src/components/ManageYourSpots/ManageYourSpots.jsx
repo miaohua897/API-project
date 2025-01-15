@@ -1,9 +1,9 @@
 import CreateASpotButton from '../CreateASpot/CreateASpotButton';
 // import image from '../../../../images/spot_example.png';
-// import {getCurrentSpot} from '../../store/spot';
+import {getCurrentSpot} from '../../store/spot';
 import { useSelector }  from 'react-redux';
-// import {useDispatch} from 'react-redux';
-// import { useEffect } from 'react';
+import {useDispatch} from 'react-redux';
+import { useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa6'; 
 import DeleteASpotButton from '../DeleteASpot/DeleteASpotButton';
@@ -11,11 +11,12 @@ import './ManageYourSpots.css';
 import { useNavigate } from 'react-router-dom';
 function ManageYourSpots(){
     const navigate=useNavigate();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     // const navigate = useNavigate();
-    // useEffect(()=>{
-    //     dispatch(getCurrentSpot())
-    // },[]);
+    useEffect(()=>{
+        dispatch(getCurrentSpot())
+    },[ dispatch]);
+
     const spots = useSelector(state=>
          state.spot.currentSpot.Spots
 
