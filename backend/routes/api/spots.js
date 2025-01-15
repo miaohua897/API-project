@@ -670,7 +670,7 @@ router.put('/:spotId', async (req, res)=>{
         if(description) theSpot.description=description;
         if(price) theSpot.price=price;
 
-    
+        theSpot.save();
         res.status(200);
         res.setHeader('Content-Type','application/json');
         res.json(theSpot);
