@@ -1,18 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {updateSpot} from '../../store/spot';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector  } from 'react-redux';
 import './UpdateASpot.css';
-
+import {getSingleSpotDetail} from  '../../store/spot';
 import { useNavigate, useParams } from 'react-router-dom';
 function UpdateASpot(){
     const {id}= useParams();
-    const [country,setCountry]=useState('');
-    const [address,setAddress] =useState('');
-    const [city,setCity] = useState('');
-    const [state,setState]=useState('');
-    const [description,setDescription]=useState('');
-    const [name,setName]=useState('');
-    const [price,setPrice]=useState('');
+    const dispatch=useDispatch();
+   useEffect(()=>{
+      dispatch(getSingleSpotDetail(id))
+   },[dispatch])
+   const thespot = useSelector(state=>state.spot);
+   console.log("Updateaspot",thespot);
+    const [country,setCountry]=useState(thespot.country);
+    const [address,setAddress] =useState(thespot.address);
+    const [city,setCity] = useState(thespot.city);
+    const [state,setState]=useState(thespot.state);
+    const [description,setDescription]=useState(thespot.description);
+    const [name,setName]=useState(thespot.name);
+    const [price,setPrice]=useState(thespot.price);
     // const [lat,setLat]=useState(10);
     // const [lng,setLng]=useState(10);
     const lat =10;
@@ -24,7 +30,7 @@ function UpdateASpot(){
     const [imageFour,setImageFour]=useState('');
     // const [errors,setErrors]=useState({});
 
-    const dispatch=useDispatch();
+   console.log(country,address,city,state,description,name,price);
     const navigate =useNavigate();
     const handleupdateSpotSubmit= async (e)=>{
         e.preventDefault();

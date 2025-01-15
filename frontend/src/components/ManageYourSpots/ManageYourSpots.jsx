@@ -28,6 +28,8 @@ function ManageYourSpots(){
         if(!value) return "https://res.cloudinary.com/dsgfqkf7n/image/upload/eight_mezc8g?_a=BAMCkGfi0";
         else return value;
     }
+
+
   
    return (
     <div>
@@ -75,8 +77,8 @@ function ManageYourSpots(){
                     <div className='updateDeleteButton'>
                     <button 
                     className='updateAspotbutton'
-                    onClick={()=>
-                      navigate(`/spots/${spot.id}/edit`)
+                    onClick={
+                      ()=> navigate(`/spots/${spot.id}/edit`)
                       }>Update</button>
                       {/* <button>Delete</button> */}
                       <DeleteASpotButton spotid={spot.id}/>
