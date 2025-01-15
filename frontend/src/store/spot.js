@@ -272,7 +272,7 @@ export const loadSpotReview=(data)=>{
     }
 }
 
-const spotReducer = (state={},action)=>{
+const spotReducer = (state={currentSpot:[]},action)=>{
     switch(action.type){
         case 'LOAD_SPOT':
             return {...state,...action.payload};

@@ -12,10 +12,12 @@ import { useNavigate } from 'react-router-dom';
 function ManageYourSpots(){
     const navigate=useNavigate();
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
+  
     useEffect(()=>{
         dispatch(getCurrentSpot())
-    },[ dispatch]);
+    },[]);
+
+
 
     const spots = useSelector(state=>
          state.spot.currentSpot.Spots
