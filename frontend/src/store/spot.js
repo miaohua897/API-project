@@ -32,12 +32,24 @@ export const deleteAReview = (reviewid) => async () => {
 //   };
 
 export const getCurrentSpot=()=> async (dispatch)=>{
-    const res = await fetch('/api/spots/current');
-    if(res.ok){
-        const data = await res.json();
-        const newdata = data;
-        dispatch(loadSpot(newdata));
-        return res;
+    try{
+        dispatch(loadCurrentSpot({'Spots':[]}));
+        const res = await csrfFetch('/api/spots/current');
+        if(res.ok){
+            const data = await res.json();
+            const newdata = data;
+            dispatch(loadCurrentSpot(newdata));
+            return res;
+        }
+    }catch(error){
+        console.log('error',error);
+    
+    }
+}
+const loadCurrentSpot=(data)=>{
+    return {
+        type:'LOAD_CURRENT_SPOT',
+        payload:data
     }
 }
 
@@ -255,6 +267,10 @@ const spotReducer = (state={},action)=>{
         case 'LOAD_Review':
             return {
                 ...state,'newreviews':action.payload
+            }
+        case 'LOAD_CURRENT_SPOT':
+            return {
+                ...state,'currentSpot':action.payload
             }
         default:
             return state;

@@ -7,6 +7,7 @@ import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { useNavigate } from 'react-router-dom';
 import './Navigation.css';
+import {getCurrentSpot} from '../../store/spot';
 // import ManageYourSpots from '../ManageYourSpots/ManageYourSpots';
 
 function ProfileButton({ user }) {
@@ -53,6 +54,7 @@ function ProfileButton({ user }) {
 
   const manageYourSpotsHanlder=(e)=>{
     e.preventDefault();
+    dispatch(getCurrentSpot());
     navigate('/spots/current');
   }
 
