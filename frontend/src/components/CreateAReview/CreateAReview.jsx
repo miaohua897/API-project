@@ -3,9 +3,11 @@ import { FaStar } from 'react-icons/fa6';
 import { useState } from 'react'; 
 import { useDispatch } from 'react-redux';
 import {createAReview} from '../../store/spot';
+import {  useNavigate } from 'react-router-dom';
 function CreateAReview({isCreateReviewOpen,createReviewonClose,spotId}){
     
     const dispatch=useDispatch();
+    const navigate=useNavigate();
     const [rating,setRating] = useState(0);
     const [newreview,setNewreview]=useState('');
     const [hovered, setHovered] = useState(false);
@@ -107,7 +109,8 @@ function CreateAReview({isCreateReviewOpen,createReviewonClose,spotId}){
             "stars":rating,'review':newreview,spotId
         }));
         createReviewonClose();
-        window.location.reload();
+        navigate(`/spots/${spotId}`);
+        // window.location.reload();
     }
 
     if(!isCreateReviewOpen) return null;

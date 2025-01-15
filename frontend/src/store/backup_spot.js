@@ -250,23 +250,13 @@ export const getSingleSpotDetail=(spotId)=> async (dispatch)=>{
     }
 }
 export const getSingleSpotReview=(spotId)=> async (dispatch)=>{
-    try{
-        const res = await fetch(`/api/spots/${spotId}/reviews`);
-        console.log('loadreview',res);
-        if(res.ok){
-            const data = await res.json();
-            const newdata = data;
-            dispatch(loadSpotReview(newdata));
-            return res;
-        }else{
-            dispatch(loadSpotReview({
-                Reviews:[]
-            }))
-        }
-    }catch(error){
-        console.log(error);
+    const res = await fetch(`/api/spots/${spotId}/reviews`);
+    if(res.ok){
+        const data = await res.json();
+        const newdata = data;
+        dispatch(loadSpotReview(newdata));
+        return res;
     }
-    
 }
 
 const loadSpot=(data)=>{
@@ -282,18 +272,15 @@ export const loadSpotReview=(data)=>{
     }
 }
 
-const spotReducer = (state={currentSpot:[],reviews:{Reviews:[]}},action)=>{
+const spotReducer = (state={currentSpot:[]},action)=>{
     switch(action.type){
         case 'LOAD_SPOT':
             return {...state,...action.payload};
         case 'LOAD_SPOT_REVIEW':
             return {...state,'reviews':action.payload};
         case 'LOAD_Review':
-             {
-                // ...state,'newreviews':action.payload
-                const objreview ={...state};
-                objreview.reviews.Reviews.push(action.payload)
-                return objreview;
+            return {
+                ...state,'newreviews':action.payload
             }
         case 'LOAD_CURRENT_SPOT':
             return {

@@ -12,26 +12,23 @@ function SingleSpotReview({spotId}){
  },[])
 
  const thespot =useSelector(state=>state.spot);
- console.log('Object.keys(thespot.reviews',Object.keys(thespot.reviews))
- if(Object.keys(thespot.reviews).length===0) return <CreateAReviewButton spotId={spotId}/>;
+
+ if(Object.keys(thespot).length===0) return ;
+ if(thespot.reviews === undefined) 
+    return (<CreateAReviewButton spotId={spotId}/>);
+
 
  console.log('thespot',thespot)
  const thereview =thespot.reviews.Reviews;
- let userReview;
- if(thereview.length >0){
- userReview = thereview.filter(el=>el.userId===sessionUser.id)
- }else{
-  userReview=null;
- }
 //  const thereview = useSelector(state=>state.spot.reviews.Reviews);
-// let userReview;
-// if(thereview &&sessionUser) {
-//     userReview = thereview.filter(el=>el.User.id===sessionUser.id)
+let userReview;
+if(thereview &&sessionUser) {
+    userReview = thereview.filter(el=>el.User.id===sessionUser.id)
   
-// } else{
-//     userReview=[];
-// }
-// console.log('thereview',thereview,'userReview',userReview ,'sessionUser',sessionUser);
+} else{
+    userReview=[];
+}
+console.log('thereview',thereview,'userReview',userReview ,'sessionUser',sessionUser);
 const thereviewReverse=(thereview)=>{
     let result =[];
     for(let i = thereview.length-1;i>=0;i--){
@@ -44,7 +41,7 @@ const thereviewReverse=(thereview)=>{
     return (
         <>
        
-        {sessionUser&& !userReview?<CreateAReviewButton spotId={spotId}/>:null}
+        {sessionUser&&userReview.length===0?<CreateAReviewButton spotId={spotId}/>:null}
         {
             thereview?
             
@@ -57,7 +54,7 @@ const thereviewReverse=(thereview)=>{
                         <p>{el.review}</p>
                     </div>
                     {
-                        sessionUser? el.userId===sessionUser.id?
+                        sessionUser? el.User.id===sessionUser.id?
                             <DeleteAReviewButton reviewid={el.id}/>:null
                             :null
                             
