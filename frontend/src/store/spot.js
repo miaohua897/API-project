@@ -1,5 +1,6 @@
 import { csrfFetch } from './csrf';
 
+
 export const getSpot=()=> async (dispatch)=>{
     const res = await fetch('/api/spots');
     if(res.ok){
@@ -20,16 +21,21 @@ export const deleteAReview = (reviewid) => async () => {
     const response = await csrfFetch(`/api/reviews/${reviewid}`, {
       method: 'DELETE'
     });
-
+    // if(response.ok){
+    //     const data = await response.json();
+    //     dispatch(removeAReview(reviewid))
+    //     return response;
+    // }
     return response;
+   
 };
 
-//   const removeASpot = (data) => {
-//     return {
-//       type: 'REMOVE_A_SPOT',
-//       payload:data
-//     };
-//   };
+ export const removeAReview = (reviewid) => {
+    return {
+      type: 'REMOVE_A_Review',
+      payload:reviewid
+    };
+  };
 
 export const getCurrentSpot=()=> async (dispatch)=>{
     try{
@@ -272,6 +278,21 @@ const spotReducer = (state={},action)=>{
             return {
                 ...state,'currentSpot':action.payload
             }
+        case 'REMOVE_A_Review':
+           {
+             // console.log('REMOVE_A_Review',state,action.payload);
+             const obj={...state};
+             obj.reviews.Reviews.map((el,index)=>{
+                 if(el.id===action.payload){
+                     // console.log('helloworld')
+                     obj.reviews.Reviews.splice(index,1);
+                 }
+               
+             })
+             // console.log('REMOVE_A_Review',obj,state)
+             return obj;
+           }
+        
         default:
             return state;
     }
