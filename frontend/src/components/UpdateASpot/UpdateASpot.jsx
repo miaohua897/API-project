@@ -22,7 +22,7 @@ function UpdateASpot(){
     const [imageTwo,setImageTwo]=useState('');
     const [imageThree,setImageThree]=useState('');
     const [imageFour,setImageFour]=useState('');
-    const [errors,setErrors]=useState({});
+    // const [errors,setErrors]=useState({});
 
     const dispatch=useDispatch();
     const navigate =useNavigate();
@@ -65,37 +65,9 @@ function UpdateASpot(){
             imageFourdata
           };
         console.log(updateinfo,id);
-        const newspot =  await  dispatch(updateSpot(updateinfo,id))
-        // navigate(`/spots/${id}`);
-        if(newspot.message !== 'Bad Request'){
-            setCountry('');
-            setAddress('');
-            setCity('');
-            setState('');
-            setDescription('');
-            setName('');
-            setPrice('');
-            setPreviewimage('');
-            setImageOne('');
-            setImageTwo('');
-            setImageThree('');
-            setImageFour('');
-            setErrors({});
-     
-            navigate(`/spots/${newspot.id}`);
-          }else{
+       dispatch(updateSpot(updateinfo,id))
+        navigate(`/spots/${id}`);
        
-            const newerror ={...errors};
-                newerror['address']=newspot.errors.address;
-                newerror['city']=newspot.errors.city;
-                newerror['country']=newspot.errors.country;
-                newerror['description']=newspot.errors.description;
-                newerror['name']=newspot.errors.name;
-                newerror['price']=newspot.errors.price;
-                newerror['state']=newspot.errors.state;
-               setErrors(newerror);
-                console.log('createaspot',errors);
-          }
     }
     const handleBackMangeSpot=()=>{
       navigate('/spots/current');
@@ -124,7 +96,7 @@ function UpdateASpot(){
                   onChange={(e) => setCountry(e.target.value)}
                   required />
                 </label>
-                <p style={{color:'red'}}>{errors.country?errors.country:null}</p>
+                {/* <p style={{color:'red'}}>{errors.country?errors.country:null}</p> */}
                 <label
                 style={{color:'white'}}
                 >
@@ -135,7 +107,7 @@ function UpdateASpot(){
                    onChange={(e) => setAddress(e.target.value)}
                   required />
                 </label>
-                <p style={{color:'red'}}>{errors.address?errors.address:null}</p>
+                {/* <p style={{color:'red'}}>{errors.address?errors.address:null}</p> */}
                 <label
                 style={{color:'white'}}
                 >
@@ -146,7 +118,7 @@ function UpdateASpot(){
                      onChange={(e) => setCity(e.target.value)}
                   required />
                 </label>
-                <p style={{color:'red'}}>{errors.city?errors.city:null}</p>
+                {/* <p style={{color:'red'}}>{errors.city?errors.city:null}</p> */}
                 <label
                 style={{color:'white'}}
                 >
@@ -157,7 +129,7 @@ function UpdateASpot(){
                    onChange={(e) => setState(e.target.value)}
                   required />
                 </label>
-                <p style={{color:'red'}}>{errors.state?errors.state:null}</p>
+                {/* <p style={{color:'red'}}>{errors.state?errors.state:null}</p> */}
                 <h1
                 style={{color:'white'}}
                 >Describe your place to guests</h1>
@@ -170,7 +142,7 @@ function UpdateASpot(){
                      onChange={(e) => setDescription(e.target.value)}
                   required placeholder='Please write at least 30 characters'/>
                 </label>
-                <p style={{color:'red'}}>{errors.description?errors.description:null}</p>
+                {/* <p style={{color:'red'}}>{errors.description?errors.description:null}</p> */}
                 <h1 style={{color:'white'}}>Create a title for your spot</h1>
                 <p style={{color:'white'}}>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
                 <label style={{color:'white'}}>   
@@ -180,7 +152,7 @@ function UpdateASpot(){
                   required 
                   placeholder='Name of your spot'/>
                 </label>
-                <p style={{color:'red'}}>{errors.name?errors.name:null}</p>
+                {/* <p style={{color:'red'}}>{errors.name?errors.name:null}</p> */}
                 <h1 style={{color:'white'}}>Set a base price for your spot</h1>
                 <p style={{color:'white'}}>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                 <label style={{color:'white'}}>  
@@ -190,7 +162,7 @@ function UpdateASpot(){
                     onChange={(e) => setPrice(e.target.value)}
                   required placeholder='Price per night (USD)'/>
                 </label>
-                <p style={{color:'red'}}>{errors.price?errors.price:null}</p>
+                {/* <p style={{color:'red'}}>{errors.price?errors.price:null}</p> */}
                 <h1 style={{color:'white'}}>Liven up your spot with photos</h1>
                 <p style={{color:'white'}}>Submit a link to at least one photo to publish your spot.</p>
                 <div className='updateUrl'>
@@ -199,35 +171,40 @@ function UpdateASpot(){
                      value={previewimage}
                       className='updateUrlInput'
                      onChange={(e) => setPreviewimage(e.target.value)}
-                  required placeholder='Preview Image URL'/>
+                  // required 
+                  placeholder='Preview Image URL'/>
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageOne}
                      className='updateUrlInput'
                      onChange={(e) => setImageOne(e.target.value)}
-                  required placeholder='Image URL'/>
+                  // required 
+                  placeholder='Image URL'/>
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageTwo}
                      className='updateUrlInput'
                      onChange={(e) => setImageTwo(e.target.value)}
-                  required placeholder='Image URL'/>
+                  // required 
+                  placeholder='Image URL'/>
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageThree}
                      className='updateUrlInput'
                      onChange={(e) => setImageThree(e.target.value)}
-                  required placeholder='Image URL'/>
+                  // required 
+                  placeholder='Image URL'/>
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
                      value={imageFour}
                      className='updateUrlInput'
                      onChange={(e) => setImageFour(e.target.value)}
-                  required placeholder='Image URL'/>
+                  // required 
+                  placeholder='Image URL'/>
                 </label>
                 </div>
             
