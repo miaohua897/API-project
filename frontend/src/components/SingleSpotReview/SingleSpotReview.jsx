@@ -18,11 +18,14 @@ function SingleSpotReview({spotId}){
  console.log('thespot',thespot)
  const thereview =thespot.reviews.Reviews;
  let userReview;
- if(thereview.length >0){
- userReview = thereview.filter(el=>el.userId===sessionUser.id)
- }else{
-  userReview=null;
+ if(sessionUser){
+    if(thereview.length >0){
+        userReview = thereview.filter(el=>el.userId===sessionUser.id)
+        }else{
+         userReview=null;
+        }
  }
+
 //  const thereview = useSelector(state=>state.spot.reviews.Reviews);
 // let userReview;
 // if(thereview &&sessionUser) {
