@@ -25,6 +25,7 @@ function ManageYourSpots(){
   
    return (
     <div>
+             <h1>Manage Spots</h1>
             <CreateASpotButton />
             <div className='managespotcontainer'>
             {
