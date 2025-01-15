@@ -80,7 +80,7 @@ function ManageYourSpots(){
 
                       </div>
                     )    
-               }):null
+               }):<p>Create a New Spot</p>
              
                  }
             </div>
