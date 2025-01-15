@@ -18,7 +18,7 @@ const spotData = [
     lng:-121,
     name:'mars hotel',
     description:'transportion is excluded',
-    price:150
+    price:154
   },
   {
     username: 'FakeUser1',
@@ -30,7 +30,7 @@ const spotData = [
     lng:-122,
     name:'moon hotel',
     description:'transportion is excluded',
-    price:150
+    price:160
   },
   
   {
@@ -56,7 +56,7 @@ const spotData = [
     lng:-122,
     name:'venus hotel',
     description:'transportion is excluded',
-    price:150
+    price:199
   }
   ,
   {
@@ -81,7 +81,7 @@ const spotData = [
     lng:-122,
     name:'saturn hotel',
     description:'transportion is excluded',
-    price:150
+    price:100
   }
   ,
   {
@@ -107,7 +107,7 @@ const spotData = [
     lng:-122,
     name:'neptune hotel',
     description:'transportion is excluded',
-    price:150
+    price:120
   }
 ]
 
