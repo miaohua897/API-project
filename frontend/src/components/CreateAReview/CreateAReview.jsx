@@ -191,8 +191,9 @@ function CreateAReview({isCreateReviewOpen,createReviewonClose,spotId}){
         }}
         >
            <FaStar onClick={handleFaStarClickFive}/>
+          
         </div>
-     
+        <a style={{paddingLeft:15}}>Stars</a>
         </ul>
         <button 
         className={rating===0||newreview.length<10?'submitYourReviewButtondisable':'submitYourReviewButton'}
