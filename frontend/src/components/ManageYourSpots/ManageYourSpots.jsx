@@ -33,10 +33,13 @@ function ManageYourSpots(){
                  spots.map(spot=>{
                     return (
                       <div className='managespotletout' key={spot.id}  
-              
+           
                       >
                     <div className="tooltip-container">
                     <img 
+                        onClick={()=>{
+                          navigate(`/spots/${spot.id}`);
+                        }}
                       src={handleimage(spot.previewImage
                       )} 
                       style={{height:130,width:260}} 
