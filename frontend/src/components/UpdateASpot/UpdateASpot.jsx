@@ -12,6 +12,13 @@ function UpdateASpot(){
    },[dispatch])
    const thespot = useSelector(state=>state.spot);
    console.log("Updateaspot",thespot);
+   const initCountry =thespot.country;
+   const initAddress = thespot.address;
+   const initCity =thespot.city;
+   const initState =thespot.state;
+   const initDescription = thespot.description;
+   const initName =thespot.name;
+   const initPrice = thespot.price;
     const [country,setCountry]=useState(thespot.country);
     const [address,setAddress] =useState(thespot.address);
     const [city,setCity] = useState(thespot.city);
@@ -98,7 +105,7 @@ function UpdateASpot(){
                   Country
                   <br></br>
                   <input type="text" 
-                  value={country}
+                  value={country||initCountry}
                   onChange={(e) => setCountry(e.target.value)}
                   required />
                 </label>
@@ -109,7 +116,7 @@ function UpdateASpot(){
                   Street Address
                   <br></br>
                   <input type="text" 
-                   value={address}
+                   value={address||initAddress}
                    onChange={(e) => setAddress(e.target.value)}
                   required />
                 </label>
@@ -120,7 +127,7 @@ function UpdateASpot(){
                   City
                   <br></br>
                   <input type="text" 
-                     value={city}
+                     value={city||initCity}
                      onChange={(e) => setCity(e.target.value)}
                   required />
                 </label>
@@ -131,7 +138,7 @@ function UpdateASpot(){
                   State
                   <br></br>
                   <input type="text" 
-                   value={state}
+                   value={state||initState}
                    onChange={(e) => setState(e.target.value)}
                   required />
                 </label>
@@ -144,7 +151,7 @@ function UpdateASpot(){
                 >Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
                 <label style={{color:'white'}}>   
                   <input type="text" 
-                     value={description}
+                     value={description||initDescription}
                      onChange={(e) => setDescription(e.target.value)}
                   required placeholder='Please write at least 30 characters'/>
                 </label>
@@ -153,7 +160,7 @@ function UpdateASpot(){
                 <p style={{color:'white'}}>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
                 <label style={{color:'white'}}>   
                   <input type="text" 
-                          value={name}
+                          value={name||initName}
                           onChange={(e) => setName(e.target.value)}
                   required 
                   placeholder='Name of your spot'/>
@@ -164,7 +171,7 @@ function UpdateASpot(){
                 <label style={{color:'white'}}>  
                     {'$ * / night           ' }
                   <input type="text" 
-                    value={price}
+                    value={price||initPrice}
                     onChange={(e) => setPrice(e.target.value)}
                   required placeholder='Price per night (USD)'/>
                 </label>
