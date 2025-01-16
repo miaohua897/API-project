@@ -200,7 +200,8 @@ function CreateASpotPage(){
                 <p style={{color:'black'}}>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                 <label style={{color:'black'}}>  
                     {'$ * / night' }{'                 '}
-                  <input type="text" 
+                  <input type="number" 
+                  min="1"
                     value={price}
                     style={{width:730}}
                     onChange={(e) => setPrice(e.target.value)}
