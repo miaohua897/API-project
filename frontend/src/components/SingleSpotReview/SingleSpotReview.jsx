@@ -24,12 +24,14 @@ function SingleSpotReview({spotId}){
  console.log('thespot',thespot)
  const thereview =thespot.reviews.Reviews;
  let userReview=[];
+ let ownerOrNot =false;
  if(sessionUser){
     if(thereview.length >0){
         userReview = thereview.filter(el=>el.userId===sessionUser.id)
         }else{
          userReview=[];
         }
+    if(sessionUser.id !==thespot.ownerId) ownerOrNot=true;
  }
 
 //  const thereview = useSelector(state=>state.spot.reviews.Reviews);
@@ -40,7 +42,7 @@ function SingleSpotReview({spotId}){
 // } else{
 //     userReview=[];
 // }
-console.log('thereview',thereview,'userReview',userReview ,'sessionUser',sessionUser);
+console.log('thereview',thereview,'userReview',userReview ,'sessionUser',sessionUser,'ownerOrNot',ownerOrNot);
 const thereviewReverse=(thereview)=>{
     let result =[];
     for(let i = thereview.length-1;i>=0;i--){
@@ -53,7 +55,7 @@ const thereviewReverse=(thereview)=>{
     return (
         <>
        
-        {sessionUser&& userReview.length===0?<CreateAReviewButton spotId={spotId}/>:null}
+        {sessionUser&& userReview.length===0 && ownerOrNot?<CreateAReviewButton spotId={spotId}/>:null}
         {
             thereview.length>0?
             
