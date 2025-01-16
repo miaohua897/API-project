@@ -32,4 +32,11 @@
     height: 30px;
     margin-bottom: 10px;
     font-weight: bolder;
+    margin-left: 350px;
+}
+.cityNstateUpdate{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+    gap:10px;
 }

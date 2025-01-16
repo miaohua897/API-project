@@ -99,50 +99,67 @@ function UpdateASpot(){
             >
              
               <div className="updataeASpotFormContainer">
+                <p  style={{color:'white'}}>Country</p>
                 <label
                 style={{color:'white'}}
                 >
-                  Country
-                  <br></br>
+                  {/* Country
+                  <br></br> */}
                   <input type="text" 
+                  style={{width:800}}
                   value={country||initCountry}
                   onChange={(e) => setCountry(e.target.value)}
                   required />
                 </label>
                 {/* <p style={{color:'red'}}>{errors.country?errors.country:null}</p> */}
+                <p  style={{color:'white'}}> Street Address</p>
                 <label
                 style={{color:'white'}}
                 >
-                  Street Address
-                  <br></br>
+                  {/* Street Address
+                  <br></br> */}
                   <input type="text" 
+                    style={{width:800}}
                    value={address||initAddress}
                    onChange={(e) => setAddress(e.target.value)}
                   required />
                 </label>
                 {/* <p style={{color:'red'}}>{errors.address?errors.address:null}</p> */}
+                <div className='cityNstateUpdate'>
+                  <div>
+                  <p style={{color:'white'}}>City</p>
                 <label
                 style={{color:'white'}}
                 >
-                  City
-                  <br></br>
+                  {/* City
+                  <br></br> */}
                   <input type="text" 
+                   style={{width:600}}
                      value={city||initCity}
                      onChange={(e) => setCity(e.target.value)}
                   required />
                 </label>
                 {/* <p style={{color:'red'}}>{errors.city?errors.city:null}</p> */}
+                  </div>
+                  <div>
+  
+                  <p style={{color:'white'}}>State</p>
                 <label
                 style={{color:'white'}}
                 >
-                  State
-                  <br></br>
+                  {/* State
+                  <br></br> */}
                   <input type="text" 
+                    style={{width:180}}
                    value={state||initState}
                    onChange={(e) => setState(e.target.value)}
                   required />
                 </label>
                 {/* <p style={{color:'red'}}>{errors.state?errors.state:null}</p> */}
+                  </div>
+              
+                </div>
+               
                 <h1
                 style={{color:'white'}}
                 >Describe your place to guests</h1>
@@ -151,6 +168,7 @@ function UpdateASpot(){
                 >Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
                 <label style={{color:'white'}}>   
                   <input type="text" 
+                   style={{width:800,height:200}}
                      value={description||initDescription}
                      onChange={(e) => setDescription(e.target.value)}
                   required placeholder='Please write at least 30 characters'/>
@@ -160,6 +178,7 @@ function UpdateASpot(){
                 <p style={{color:'white'}}>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
                 <label style={{color:'white'}}>   
                   <input type="text" 
+                  style={{width:800}}
                           value={name||initName}
                           onChange={(e) => setName(e.target.value)}
                   required 
@@ -171,6 +190,7 @@ function UpdateASpot(){
                 <label style={{color:'white'}}>  
                     {'$ * / night           ' }
                   <input type="text" 
+                  style={{width:730}}
                     value={price||initPrice}
                     onChange={(e) => setPrice(e.target.value)}
                   required placeholder='Price per night (USD)'/>
@@ -181,6 +201,7 @@ function UpdateASpot(){
                 <div className='updateUrl'>
                 <label style={{color:'white'}}>   
                   <input type="text" 
+                  style={{width:800}}
                      value={previewimage}
                       className='updateUrlInput'
                      onChange={(e) => setPreviewimage(e.target.value)}
@@ -189,6 +210,7 @@ function UpdateASpot(){
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
+                            style={{width:800}}
                      value={imageOne}
                      className='updateUrlInput'
                      onChange={(e) => setImageOne(e.target.value)}
@@ -197,6 +219,7 @@ function UpdateASpot(){
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
+                            style={{width:800}}
                      value={imageTwo}
                      className='updateUrlInput'
                      onChange={(e) => setImageTwo(e.target.value)}
@@ -205,6 +228,7 @@ function UpdateASpot(){
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
+                            style={{width:800}}
                      value={imageThree}
                      className='updateUrlInput'
                      onChange={(e) => setImageThree(e.target.value)}
@@ -213,6 +237,7 @@ function UpdateASpot(){
                 </label>
                 <label style={{color:'white'}}>   
                   <input type="text" 
+                            style={{width:800}}
                      value={imageFour}
                      className='updateUrlInput'
                      onChange={(e) => setImageFour(e.target.value)}
