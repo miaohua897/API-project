@@ -1,4 +1,4 @@
-import CreateASpotButton from '../CreateASpot/CreateASpotButton';
+import CreateASpotPageButton from '../CreateASpot/CreateASpotPageButton';
 // import image from '../../../../images/spot_example.png';
 import {getCurrentSpot} from '../../store/spot';
 import { useSelector }  from 'react-redux';
@@ -37,7 +37,7 @@ function ManageYourSpots(){
    return (
     <div>
              <h1>Manage Spots</h1>
-            <CreateASpotButton />
+            <CreateASpotPageButton />
             <div className='managespotcontainer'>
             {
                  spots?   
