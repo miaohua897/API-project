@@ -194,7 +194,8 @@ function CreateASpot({ isOpen, onClose }){
                 <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                 <label>  
                     {'$ * / night' }
-                  <input type="text" 
+                  <input type="number"
+                  min="1" 
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                   required placeholder='Price per night (USD)'/>
