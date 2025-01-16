@@ -66,6 +66,37 @@ const loadCurrentSpot=(data)=>{
         payload:data
     }
 }
+export const updateAReview=(data)=>async(dispatch)=>{
+    const {
+        reviewid,
+        review,
+        stars
+    }=data;
+    try{
+        const res =  await csrfFetch(`/api/reviews/${reviewid}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                review,
+                stars
+            })
+          });
+        if(res.ok){
+            const datares = await res.json();
+            console.log('datares',datares);
+            dispatch(updateReview(datares));
+            return datares;
+        }
+    }catch(e){
+        console.log(e);
+    }
+}
+
+const updateReview=(data)=>{
+    return {
+        type:'UPDATE_Review',
+        payload:data
+    }
+}
 
 const loadReview=(data)=>{
     return {
@@ -295,6 +326,17 @@ const spotReducer = (state={currentSpot:[],reviews:{Reviews:[]}},action)=>{
                 objreview.reviews.Reviews.push(action.payload)
                 return objreview;
             }
+        case 'UPDATE_Review':
+                {
+                    const objreviewUpdate ={...state};
+                    objreviewUpdate.reviews.Reviews=objreviewUpdate.reviews.Reviews.map(el=>{
+                        if(el.id===action.payload.id){
+                            return action.payload;
+                        }
+                        return el;
+                    })
+                    return objreviewUpdate;
+                }
         case 'LOAD_CURRENT_SPOT':
             return {
                 ...state,'currentSpot':action.payload

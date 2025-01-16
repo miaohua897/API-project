@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {getSingleSpotReview} from '../../store/spot';
 import CreateAReviewButton from '../CreateAReview/CreateAReviewButton';
+import UpdateAReviewButton from '../UpdateAReview/UpdateAReviewButton';
 import DeleteAReviewButton from '../DeleteAReview/DeleteAReviewButton';
+import './SingleSpotReview.css';
 function SingleSpotReview({spotId}){
     const sessionUser = useSelector(state => state.session.user);
     console.log('sessionUserFromSpotdetaiil',sessionUser)
@@ -69,7 +71,14 @@ const thereviewReverse=(thereview)=>{
                     </div>
                     {
                         sessionUser? el.userId===sessionUser.id?
-                            <DeleteAReviewButton reviewid={el.id} spotId={spotId}/>:null
+                        <div className="updateNdelete">
+                        <UpdateAReviewButton reviewid={el.id} spotId={spotId} theReview={{
+                            "stars":el.stars,
+                           "review":el.review
+                        }}/>
+                        <DeleteAReviewButton reviewid={el.id} spotId={spotId}/>
+                       </div>
+                            :null
                             :null
                             
                     }
