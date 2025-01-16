@@ -1,8 +1,8 @@
-import {deleteAReview,removeAReview} from '../../store/spot';
+import {deleteAReview,removeAReview,getSingleSpotDetail} from '../../store/spot';
 import { useDispatch } from 'react-redux';
 import './DeleteAReview.css';
 function DeleteAReview( {isDeleteAReviewButtonModalOpen, 
-    closeDeleteAReviewButtonModal,reviewid}){
+    closeDeleteAReviewButtonModal,reviewid,spotId}){
         const dispatch=useDispatch();
 
          const handlerClickDelete=()=>{
@@ -11,6 +11,9 @@ function DeleteAReview( {isDeleteAReviewButtonModalOpen,
         // window.location.reload();
         dispatch(removeAReview(reviewid))
         closeDeleteAReviewButtonModal;
+          
+      dispatch(getSingleSpotDetail(spotId))
+     
  
     }
 

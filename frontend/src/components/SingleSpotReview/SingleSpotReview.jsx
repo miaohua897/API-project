@@ -69,7 +69,7 @@ const thereviewReverse=(thereview)=>{
                     </div>
                     {
                         sessionUser? el.userId===sessionUser.id?
-                            <DeleteAReviewButton reviewid={el.id}/>:null
+                            <DeleteAReviewButton reviewid={el.id} spotId={spotId}/>:null
                             :null
                             
                     }

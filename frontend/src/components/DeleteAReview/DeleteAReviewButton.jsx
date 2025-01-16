@@ -2,7 +2,7 @@ import { useState } from "react";
 import DeleteAReview from './DeleteAReview';
 
 
-function DeleteAReviewButton({reviewid}){
+function DeleteAReviewButton({reviewid,spotId}){
     const [isDeleteAReviewButtonModalOpen,setIsDeleteAReviewButtonModalOpen]=useState(false);
     const openDeleteAReviewButtonModal=()=>{
         setIsDeleteAReviewButtonModalOpen(true);
@@ -19,6 +19,7 @@ function DeleteAReviewButton({reviewid}){
           isDeleteAReviewButtonModalOpen={isDeleteAReviewButtonModalOpen} 
           closeDeleteAReviewButtonModal={closeDeleteAReviewButtonModal} 
           reviewid={reviewid}
+          spotId={spotId}
           /> 
         </div>
       );

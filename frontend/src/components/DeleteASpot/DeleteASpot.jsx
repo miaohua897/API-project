@@ -11,8 +11,10 @@ function DeleteASpot({isDeleteASpotButtonModalOpen,closeDeleteASpotButtonModal,s
         // console.log('delete a spot',spotid);
         dispatch(deleteASpot(spotid));
        dispatch(removeASpot(spotid));
-        closeDeleteASpotButtonModal();
+     
+      closeDeleteASpotButtonModal();
         navigate('/spots/current');
+        
     
     }
  return (

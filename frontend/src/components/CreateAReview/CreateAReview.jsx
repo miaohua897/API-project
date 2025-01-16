@@ -2,7 +2,7 @@ import './CreateAReview.css';
 import { FaStar } from 'react-icons/fa6';
 import { useState } from 'react'; 
 import { useDispatch } from 'react-redux';
-import {createAReview} from '../../store/spot';
+import {createAReview,getSingleSpotDetail} from '../../store/spot';
 import {  useNavigate } from 'react-router-dom';
 function CreateAReview({isCreateReviewOpen,createReviewonClose,spotId}){
     
@@ -109,7 +109,10 @@ function CreateAReview({isCreateReviewOpen,createReviewonClose,spotId}){
             "stars":rating,'review':newreview,spotId
         }));
         createReviewonClose();
+       
         navigate(`/spots/${spotId}`);
+        dispatch(getSingleSpotDetail(spotId));
+        
         // window.location.reload();
     }
 

@@ -19,7 +19,7 @@ function SingleSpotPage(){
     },[]);
     useEffect(()=>{
       dispatch(loadSpotReview({}))
-    })
+    },[])
 
     const spots = useSelector(state=>
         state.spot.Spots

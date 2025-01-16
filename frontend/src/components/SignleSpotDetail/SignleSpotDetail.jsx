@@ -14,7 +14,7 @@ function SignleSpotDetail(){
     console.log('spotId',spotId);
  useEffect(()=>{
     dispatch(getSingleSpotDetail(spotId))
- },[dispatch])
+ },[])
  const thespot = useSelector(state=>state.spot);
  console.log("thespot",thespot);
 const handleReserve=()=>{
