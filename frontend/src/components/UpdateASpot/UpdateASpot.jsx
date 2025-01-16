@@ -189,7 +189,8 @@ function UpdateASpot(){
                 <p style={{color:'white'}}>Competitive pricing can help your listing stand out and rank higher in search results.</p>
                 <label style={{color:'white'}}>  
                     {'$ * / night           ' }
-                  <input type="text" 
+                  <input type="number" 
+                  min='1'
                   style={{width:730}}
                     value={price||initPrice}
                     onChange={(e) => setPrice(e.target.value)}
