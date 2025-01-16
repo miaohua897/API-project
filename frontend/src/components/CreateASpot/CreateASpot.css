@@ -73,5 +73,11 @@
   font-weight: bolder;
   width: 100px;
   height: 30px;
+  margin-left: 350px;
   background-color: darkcyan;
+}
+.cityNstate{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

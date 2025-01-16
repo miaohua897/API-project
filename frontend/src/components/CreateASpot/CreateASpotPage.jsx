@@ -133,42 +133,53 @@ function CreateASpotPage(){
             >
             
               <div className="CreateASpotFormContainer">
+                <p>Country</p>
                 <label style={{color:'black'}}>
-                  Country {'                 '}
+                  {/* Country {'                 '} */}
                   <input type="text" 
+                   style={{width:800}}
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.country?errors.country:null}</p>
+                <p>Street Address</p>
                 <label style={{color:'black'}}>
-                  Street Address{'                 '}
+                  {/* Street Address{'                 '} */}
                   <input type="text" 
+                   style={{width:800}}
                    value={address}
                    onChange={(e) => setAddress(e.target.value)}
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.address?errors.address:null}</p>
+                <div className='cityNstate'>
+                <p>City</p>
                 <label style={{color:'black'}}>
-                  City{'                 '}
+                  {/* City{'                 '} */}
                   <input type="text" 
+                   style={{width:400}}
                      value={city}
                      onChange={(e) => setCity(e.target.value)}
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.city?errors.city:null}</p>
+                <p>State</p>
                 <label style={{color:'black'}}>
-                  State{'                 '}
+                  {/* State{'                 '} */}
                   <input type="text" 
                    value={state}
                    onChange={(e) => setState(e.target.value)}
                   required />
                 </label>
                 <p style={{color:'red'}}>{errors.state?errors.state:null}</p>
+                </div>
+                
                 <h2 style={{color:'black'}}>Describe your place to guests</h2>
                 <p style={{color:'black'}}>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
                 <label style={{color:'black'}}>   
                   <input type="text" 
+                   style={{width:800,height:200}}
                      value={description}
                      onChange={(e) => setDescription(e.target.value)}
                   required placeholder='Please write at least 30 characters'/>
@@ -178,6 +189,7 @@ function CreateASpotPage(){
                 <p style={{color:'black'}}>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
                 <label style={{color:'black'}}>   
                   <input type="text" 
+                    style={{width:800}}
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                   required 
@@ -190,6 +202,7 @@ function CreateASpotPage(){
                     {'$ * / night' }{'                 '}
                   <input type="text" 
                     value={price}
+                    style={{width:730}}
                     onChange={(e) => setPrice(e.target.value)}
                   required placeholder='Price per night (USD)'/>
                 </label>
@@ -199,13 +212,13 @@ function CreateASpotPage(){
                 <label style={{color:'black'}}>   
                   <input type="text" 
                      value={previewimage}
-                     style={{width:300}}
+                     style={{width:800}}
                      onChange={(e) => setPreviewimage(e.target.value)}
                   required placeholder='Preview Image URL'/>
                 </label>
                 <label style={{color:'black'}}>   
                   <input type="text" 
-                  style={{width:300}}
+                  style={{width:800}}
                      value={imageOne}
                      onChange={(e) => setImageOne(e.target.value)}
                   required placeholder='Image URL'/>
@@ -213,21 +226,21 @@ function CreateASpotPage(){
                 <label style={{color:'black'}}>   
                   <input type="text" 
                      value={imageTwo}
-                     style={{width:300}}
+                     style={{width:800}}
                      onChange={(e) => setImageTwo(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
                 <label style={{color:'black'}}>   
                   <input type="text" 
                      value={imageThree}
-                     style={{width:300}}
+                     style={{width:800}}
                      onChange={(e) => setImageThree(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
                 <label style={{color:'black'}}>   
                   <input type="text" 
                      value={imageFour}
-                     style={{width:300}}
+                     style={{width:800}}
                      onChange={(e) => setImageFour(e.target.value)}
                   required placeholder='Image URL'/>
                 </label>
