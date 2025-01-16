@@ -13,16 +13,22 @@ function SingleSpotReview({spotId}){
 
  const thespot =useSelector(state=>state.spot);
  console.log('Object.keys(thespot.reviews',Object.keys(thespot.reviews))
- if(Object.keys(thespot.reviews).length===0) return <CreateAReviewButton spotId={spotId}/>;
+ if(Object.keys(thespot.reviews).length===0) return (
+    <>
+    <p>Be the first to post a review!</p>
+    <CreateAReviewButton spotId={spotId}/>
+    </>
+
+);
 
  console.log('thespot',thespot)
  const thereview =thespot.reviews.Reviews;
- let userReview;
+ let userReview=[];
  if(sessionUser){
     if(thereview.length >0){
         userReview = thereview.filter(el=>el.userId===sessionUser.id)
         }else{
-         userReview=null;
+         userReview=[];
         }
  }
 
@@ -34,7 +40,7 @@ function SingleSpotReview({spotId}){
 // } else{
 //     userReview=[];
 // }
-// console.log('thereview',thereview,'userReview',userReview ,'sessionUser',sessionUser);
+console.log('thereview',thereview,'userReview',userReview ,'sessionUser',sessionUser);
 const thereviewReverse=(thereview)=>{
     let result =[];
     for(let i = thereview.length-1;i>=0;i--){
@@ -47,9 +53,9 @@ const thereviewReverse=(thereview)=>{
     return (
         <>
        
-        {sessionUser&& !userReview?<CreateAReviewButton spotId={spotId}/>:null}
+        {sessionUser&& userReview.length===0?<CreateAReviewButton spotId={spotId}/>:null}
         {
-            thereview?
+            thereview.length>0?
             
             thereviewReverse(thereview).map((el,index)=>{
                 return (
