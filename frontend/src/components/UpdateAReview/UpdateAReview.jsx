@@ -1,5 +1,5 @@
 import { FaStar } from 'react-icons/fa6';
-import {  useState } from 'react'; 
+import {  useEffect, useState } from 'react'; 
 import { useDispatch } from 'react-redux';
 import {  useNavigate } from 'react-router-dom';
 import {updateAReview} from '../../store/spot';
@@ -20,7 +20,9 @@ function UpdateAReview({isUpdateReviewOpen,closeUpdateReview,reviewid,spotId,the
     const [hoveredfour, setHoveredfour] = useState(false);
     const [hoveredfourfour, setHoveredfourfour] = useState(false);
 
-
+    useEffect(()=>{
+      setNewreview(theReview.review);
+    },[])
 
     const handleFaStarClickFive=()=>{
         setRating(5)
@@ -149,7 +151,7 @@ function UpdateAReview({isUpdateReviewOpen,closeUpdateReview,reviewid,spotId,the
             <label >
                       <p>How was your stay?</p> 
                       <input type="text" 
-                      value={newreview||theReview.review}
+                      value={newreview}
                       onChange={(e)=>setNewreview(e.target.value)}
                       placeholder="Leave your review here..."
                       required 
