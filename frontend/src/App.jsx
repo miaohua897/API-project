@@ -8,7 +8,7 @@ import SignleSpotDetail from './components/SignleSpotDetail/SignleSpotDetail';
 import ManageYourSpots from './components/ManageYourSpots/ManageYourSpots';
 import UpdateASpot from './components/UpdateASpot/UpdateASpot';
 import CreateASpotPage from './components/CreateASpot/CreateASpotPage';
-
+import ManageReviews from './components/ManageReviews/ManageReviews';
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,6 +43,10 @@ const router = createBrowserRouter([
         path: '/spots/:spotId',
         element: <SignleSpotDetail />
       } ,
+      {
+        path:'/reviews/current',
+        element: <ManageReviews />
+      },
       {
         path:'/spots/current',
         element: <ManageYourSpots />

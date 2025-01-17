@@ -8,6 +8,7 @@ import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { useNavigate } from 'react-router-dom';
 import './Navigation.css';
 import {getCurrentSpot} from '../../store/spot';
+import {getCurrentReviews} from '../../store/review';
 // import ManageYourSpots from '../ManageYourSpots/ManageYourSpots';
 
 function ProfileButton({ user }) {
@@ -57,6 +58,11 @@ function ProfileButton({ user }) {
     dispatch(getCurrentSpot());
     navigate('/spots/current');
   }
+  const manageYourReviewsHanlder=(e)=>{
+    e.preventDefault();
+    dispatch(getCurrentReviews());
+    navigate('/reviews/current');
+  }
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
@@ -76,6 +82,11 @@ function ProfileButton({ user }) {
               <button onClick={manageYourSpotsHanlder}
               className='DemoUser'
               >manage spots</button>
+            </li>
+            <li >
+              <button onClick={manageYourReviewsHanlder}
+              className='DemoUser'
+              >manage reviews</button>
             </li>
             <li>
               <button onClick={logout}
