@@ -13,9 +13,12 @@
 }
 #homeicon {
     text-decoration: none;
+    color:darkcyan;
+    font-weight: bolder;
 }
 #homeicon::before{
     content:'🌀';
+   
     position: absolute;
     top:30px;
     left: 2.5%;
