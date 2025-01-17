@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
     <nav >
      <ul className='Nav_bar'>
       <li className='homelogo'>
-        <NavLink to="/" id='homeicon'>🌀Castlebnb</NavLink>
+        <NavLink to="/" id='homeicon'>Castlebnb</NavLink>
       </li>
       {
         sessionUser? ( <li >

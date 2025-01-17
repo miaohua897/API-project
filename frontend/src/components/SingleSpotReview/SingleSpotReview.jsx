@@ -63,11 +63,11 @@ const thereviewReverse=(thereview)=>{
             
             thereviewReverse(thereview).map((el,index)=>{
                 return (
-                    <div key={index}>
+                    <div key={index} className="singleReviewContainer">
                      <div >
-                        {el.User? <p >{'Name:'+el.User.firstName}</p>:null}
-                        <p >{"Date: "+el.createdAt.slice(0,7)}</p>
-                        <p>{el.review}</p>
+                        {el.User? <p id='singleReviewContainername'>{el.User.firstName}</p>:null}
+                        <p id='singleReviewContainerdate'>{el.createdAt.slice(0,7)}</p>
+                        <p id='singleReviewContainerreview'>{el.review}</p>
                     </div>
                     {
                         sessionUser? el.userId===sessionUser.id?

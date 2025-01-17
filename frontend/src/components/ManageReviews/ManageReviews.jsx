@@ -3,7 +3,7 @@ import ManageReviewUpdateButton from './ManageReviewUpdateButton';
 import ManageReviewDeleteButton from './ManageReviewDeleteButton';
 import {getCurrentReviews} from '../../store/review';
 import { useEffect } from "react";
-
+import './ManageReviewUpdate.css';
 function ManageReviews(){
     const dispatch = useDispatch();
    
@@ -18,10 +18,10 @@ function ManageReviews(){
 
             reviews.map((el,index)=>{
                 return (
-                    <div key={index} >
-                        <h2>{el.Spot.name}</h2>
-                        <p>{el.createdAt.slice(0,7)}</p>
-                        <p>{el.review}</p>
+                    <div key={index} className="updateReviewContainer">
+                        <h2 id='updateReviewContainername'>{el.Spot.name}</h2>
+                        <p id='updateReviewContainerdate'>{el.createdAt.slice(0,7)}</p>
+                        <p id='updateReviewContainerreview'>{el.review}</p>
                         <div className="updateNdelete">
                         <ManageReviewUpdateButton reviewid={el.id} 
                         spotId={el.Spot.id}

@@ -24,7 +24,10 @@ const handleReserve=()=>{
     return (
         <div className="SingleSpotDetialPage">     
         <div>
+                <br></br>
                  <h1 style={{color:"black"}}>{thespot.name}</h1>
+                 <br></br>
+                 <br></br>
                  <div className="theSpotImages">     
                     {thespot.SpotImages?thespot.SpotImages.map((el,index)=>{
                     if(el.preview)
@@ -62,17 +65,21 @@ const handleReserve=()=>{
                  </div>
            
                 {thespot.Owner?(
-                    <>
-                          <a style={{color:"black"}}>{'Hosted by:  '+thespot.Owner.firstName}</a>
+                    <div className="ownerName">
+                        <br></br>
+                        <br></br>
+                          <a style={{color:"black"}}>{thespot.Owner.firstName}</a>
                           <a style={{color:"black"}}>{'             '+thespot.Owner.lastName}</a>
-                    </>
+                    </div>
 
                 ):null}
           
-                <p style={{color:"black"}}>{"Location: "+thespot.city+','+thespot.state+','+thespot.country}</p>
-                <p style={{color:"black"}}>{'Description:  '+thespot.description}</p>
+                <p className="spotLocation" style={{color:"black"}}>{"Location: "+thespot.city+',   '+thespot.state+',   '+thespot.country}</p>
+                <p className="spotDescription"  style={{color:"black"}}>{'Description:  '+thespot.description}</p>
         </div>
-                <h1 style={{color:"black"}}>Reviews:</h1>
+                {/* <h1 style={{color:"black"}}>Reviews:</h1> */}
+                <br></br>
+                <br></br>
                 <p style={{color:"black"}}>
                <FaStar style={{color:"black"}}/>
                 {thespot.avgStarRating?

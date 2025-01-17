@@ -33,6 +33,7 @@
     justify-content: center;
     align-items: center;
     gap:5px;
+ 
 
 
 }
@@ -56,6 +57,12 @@
 .mainSpotImage{
     width: 90%;
     height:auto;
+    border-radius: 3px;
+    box-shadow:  0 -5px 15px rgba(0, 0, 0, 0.3),  
+    0 5px 15px rgba(0, 0, 0, 0.3),  
+    -5px 0 15px rgba(0, 0, 0, 0.3),  
+    5px 0 15px rgba(0, 0, 0, 0.3);   
+    
 }
 .priceAndReview{
     display: flex;
@@ -64,4 +71,16 @@
     align-items: center;
     width: 80%;
     margin-left: 2px;
+}
+#noPreviewImagesimg{
+    border-radius: 3px;
+}
+.ownerName{
+    font-size: 28px;
+}
+.spotLocation{
+    font-size: 14px;
+}
+.spotDescription{
+    font-size:16px;
 }
