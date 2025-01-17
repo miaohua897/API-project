@@ -8,7 +8,7 @@ import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { useNavigate } from 'react-router-dom';
 import './Navigation.css';
 import {getCurrentSpot} from '../../store/spot';
-import {getCurrentReviews} from '../../store/review';
+// import {getCurrentReviews} from '../../store/review';
 // import ManageYourSpots from '../ManageYourSpots/ManageYourSpots';
 
 function ProfileButton({ user }) {
@@ -60,7 +60,7 @@ function ProfileButton({ user }) {
   }
   const manageYourReviewsHanlder=(e)=>{
     e.preventDefault();
-    dispatch(getCurrentReviews());
+    // dispatch(getCurrentReviews());
     navigate('/reviews/current');
   }
 

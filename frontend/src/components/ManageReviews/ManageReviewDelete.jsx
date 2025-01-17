@@ -1,4 +1,4 @@
-import {deleteAReviewFromManageReview} from '../../store/review';
+import {deleteAReviewFromManageReview,getCurrentReviews} from '../../store/review';
 import { useDispatch } from 'react-redux';
 import './ManageReviewDelete.css';
 // import { useEffect } from 'react';
@@ -8,14 +8,14 @@ function ManageReviewDelete( {isDeleteAReviewButtonModalOpen,
         // const navigate=useNavigate();
         const dispatch=useDispatch();
 
-         const handlerClickDelete=()=>{
+         const handlerClickDelete=async()=>{
         // console.log('delete a review',reviewid);
-        dispatch(deleteAReviewFromManageReview(reviewid));
+       await  dispatch(deleteAReviewFromManageReview(reviewid));
         // dispatch(removeASpotFromManageReview(reviewid));
         closeDeleteAReviewButtonModal();
-        // dispatch(getCurrentReviews());
+        dispatch(getCurrentReviews());
         // navigate('/reviews/current');
-        window.location.reload();
+        // window.location.reload();
     }
 
         if(!isDeleteAReviewButtonModalOpen) return null;
